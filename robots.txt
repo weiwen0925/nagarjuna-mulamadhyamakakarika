@@ -1,0 +1,8 @@
+# weiwen0925.github.io/nagarjuna-mulamadhyamakakarika/
+# 《中論》全二十七品彙整閱讀本
+
+User-agent: *
+Allow: /
+
+# Sitemap location (請 Google 抓取此 sitemap)
+Sitemap: https://weiwen0925.github.io/nagarjuna-mulamadhyamakakarika/sitemap.xml
