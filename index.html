@@ -192,14 +192,15 @@ body{
 .vol-range{font-size:13.7px;color:#b3a079;letter-spacing:1px;
   font-family:"Noto Sans TC",sans-serif;}
 .toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
-.toc-card{display:flex;gap:15px;align-items:flex-start;
+.toc-card{position:relative;display:flex;
   background:var(--card);border:1px solid var(--border);
   border-left:4px solid var(--gold);border-radius:9px;
-  padding:15px 18px;text-decoration:none;color:var(--text);
-  transition:transform .16s,box-shadow .16s,border-color .16s;
-  box-shadow:0 1px 3px rgba(0,0,0,.05);}
+  box-shadow:0 1px 3px rgba(0,0,0,.05);
+  transition:transform .16s,box-shadow .16s,border-color .16s;}
 .toc-card:hover{transform:translateY(-3px);
   box-shadow:0 6px 18px rgba(91,58,41,.16);border-left-color:var(--accent-red);}
+.toc-card-link{display:flex;gap:15px;align-items:flex-start;flex:1;
+  padding:15px 18px 32px;text-decoration:none;color:var(--text);}
 .toc-num{flex:none;width:38px;height:38px;border-radius:50%;
   background:var(--headGrad);color:var(--goldL);
   display:flex;align-items:center;justify-content:center;
@@ -209,6 +210,45 @@ body{
   letter-spacing:1px;line-height:1.5;}
 .toc-sub{font-size:14.7px;color:var(--text-muted);line-height:1.65;
   font-family:"Noto Sans TC",sans-serif;}
+.toc-yt{position:absolute;right:11px;bottom:9px;z-index:2;
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:"Noto Sans TC",sans-serif;font-size:12.1px;letter-spacing:1.5px;
+  color:var(--goldL);background:rgba(184,134,11,.14);
+  border:1px solid rgba(184,134,11,.5);border-radius:11px;
+  padding:3px 10px;text-decoration:none;
+  transition:background .2s,color .2s,transform .15s,box-shadow .2s;}
+.toc-yt:hover{background:rgba(184,134,11,.32);color:#f0dfb8;
+  transform:translateY(-1px);box-shadow:0 2px 8px rgba(184,134,11,.3);}
+.toc-yt .yt-play{display:inline-flex;align-items:center;justify-content:center;
+  width:13px;height:13px;border-radius:50%;background:#cc0000;color:#fff;
+  font-size:8.4px;line-height:1;}
+
+/* ════ 複製連結鈕（外層各品標頭）════ */
+.wy-copy-btn{position:absolute;top:18px;right:24px;z-index:3;
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(184,134,11,.18);border:1px solid rgba(212,168,75,.45);
+  color:var(--goldL);font-family:"Noto Sans TC",sans-serif;
+  font-size:12.1px;letter-spacing:1.5px;padding:5px 11px;
+  border-radius:14px;cursor:pointer;opacity:.7;
+  transition:all .22s;}
+.wy-copy-btn:hover{opacity:1;background:rgba(184,134,11,.32);
+  color:#f5e3b0;transform:translateY(-1px);
+  box-shadow:0 3px 10px rgba(184,134,11,.3);}
+.wy-copy-btn.copied{background:rgba(106,168,114,.32);
+  border-color:#88c096;color:#dff0e3;opacity:1;}
+.wy-copy-btn svg{flex:none;}
+
+/* ════ 複製成功 toast ════ */
+#wyToast{position:fixed;left:50%;bottom:84px;
+  transform:translateX(-50%) translateY(20px);z-index:500;
+  background:rgba(30,26,20,.94);border:1px solid var(--gold);
+  border-radius:24px;padding:11px 24px;
+  font-family:"Noto Sans TC",sans-serif;font-size:14.7px;letter-spacing:1.5px;
+  color:var(--goldL);opacity:0;pointer-events:none;
+  transition:opacity .25s,transform .25s;
+  box-shadow:0 6px 28px rgba(0,0,0,.55);
+  backdrop-filter:blur(6px);}
+#wyToast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
 /* ════ 各品章節 ════ */
 .chapter{margin:0;padding:0;}
@@ -418,12 +458,12 @@ body{
 <section class="toc-section" id="toc">
 <h2 class="toc-title">總 目 錄</h2>
 <div class="toc-desc">中論 · 卷一至卷四 · 全二十七品 · 點選品目即可跳轉</div>
-<div class="toc-vol"><div class="vol-band"><span class="vol-num">卷一</span><span class="vol-name">觀因緣品 — 觀染染者品</span><span class="vol-range">第一品至第六品 · 緣起總綱與身心世界的解構</span></div><div class="toc-grid"><a class="toc-card" href="#chapter-1"><span class="toc-num">1</span><span class="toc-body"><span class="toc-name">觀因緣品第一</span><span class="toc-sub">八不緣起的總綱 · 從四緣破生確立性空根本</span></span></a><a class="toc-card" href="#chapter-2"><span class="toc-num">2</span><span class="toc-body"><span class="toc-name">觀去來品第二</span><span class="toc-sub">金剛慧劍 · 解構時間、運動與去者的自性</span></span></a><a class="toc-card" href="#chapter-3"><span class="toc-num">3</span><span class="toc-body"><span class="toc-name">觀六情品第三</span><span class="toc-sub">從「眼不自見」到「無我」的解脫邏輯</span></span></a><a class="toc-card" href="#chapter-4"><span class="toc-num">4</span><span class="toc-body"><span class="toc-name">觀五陰品第四</span><span class="toc-sub">空性織錦 · 色受想行識與因緣的解構</span></span></a><a class="toc-card" href="#chapter-5"><span class="toc-num">5</span><span class="toc-body"><span class="toc-name">觀六種品第五</span><span class="toc-sub">從「虛空」看透「實體」與「特徵」的邏輯迷局</span></span></a><a class="toc-card" href="#chapter-6"><span class="toc-num">6</span><span class="toc-body"><span class="toc-name">觀染染者品第六</span><span class="toc-sub">情緒與自我的實存性辯證</span></span></a></div></div>
-<div class="toc-vol"><div class="vol-band"><span class="vol-num">卷二</span><span class="vol-name">觀三相品 — 觀合品</span><span class="vol-range">第七品至第十四品 · 有為三相、作者、我與苦行的破除</span></div><div class="toc-grid"><a class="toc-card" href="#chapter-7"><span class="toc-num">7</span><span class="toc-body"><span class="toc-name">觀三相品第七</span><span class="toc-sub">破解時間與存在的邏輯迷宮 · 破有為三相</span></span></a><a class="toc-card" href="#chapter-8"><span class="toc-num">8</span><span class="toc-body"><span class="toc-name">觀作作者品第八</span><span class="toc-sub">因果實相 · 行動與主體的解構</span></span></a><a class="toc-card" href="#chapter-9"><span class="toc-num">9</span><span class="toc-body"><span class="toc-name">觀本住品第九</span><span class="toc-sub">破除「見聞之前先有自我」的本住假設</span></span></a><a class="toc-card" href="#chapter-10"><span class="toc-num">10</span><span class="toc-body"><span class="toc-name">觀燃可燃品第十</span><span class="toc-sub">燃與可燃的相待 · 破我與五陰的一異執</span></span></a><a class="toc-card" href="#chapter-11"><span class="toc-num">11</span><span class="toc-body"><span class="toc-name">觀本際品第十一</span><span class="toc-sub">破解生死虛妄的終極邏輯</span></span></a><a class="toc-card" href="#chapter-12"><span class="toc-num">12</span><span class="toc-body"><span class="toc-name">觀苦品第十二</span><span class="toc-sub">痛苦歸因的邏輯解構 · 破四種謬誤，重構緣起視角</span></span></a><a class="toc-card" href="#chapter-13"><span class="toc-num">13</span><span class="toc-body"><span class="toc-name">觀行品第十三</span><span class="toc-sub">空性的邏輯 · 諸行虛誑與無性的證成</span></span></a><a class="toc-card" href="#chapter-14"><span class="toc-num">14</span><span class="toc-body"><span class="toc-name">觀合品第十四</span><span class="toc-sub">破見、所見、見者的和合之相</span></span></a></div></div>
-<div class="toc-vol"><div class="vol-band"><span class="vol-num">卷三</span><span class="vol-name">觀有無品 — 觀成壞品</span><span class="vol-range">第十五品至第二十一品 · 自性、業力與諸法實相的揭示</span></div><div class="toc-grid"><a class="toc-card" href="#chapter-15"><span class="toc-num">15</span><span class="toc-body"><span class="toc-name">觀有無品第十五</span><span class="toc-sub">破解實相的辯證演算 · 正破自性與有無二見</span></span></a><a class="toc-card" href="#chapter-16"><span class="toc-num">16</span><span class="toc-body"><span class="toc-name">觀縛解品第十六</span><span class="toc-sub">破除輪迴與束縛的終極邏輯</span></span></a><a class="toc-card" href="#chapter-17"><span class="toc-num">17</span><span class="toc-body"><span class="toc-name">觀業品第十七</span><span class="toc-sub">從「實有」到「如幻」的業力邏輯解構</span></span></a><a class="toc-card" href="#chapter-18"><span class="toc-num">18</span><span class="toc-body"><span class="toc-name">觀法品第十八</span><span class="toc-sub">從「無我」契入諸法實相的究竟導讀</span></span></a><a class="toc-card" href="#chapter-19"><span class="toc-num">19</span><span class="toc-body"><span class="toc-name">觀時品第十九</span><span class="toc-sub">破過去、現在、未來三時的相待自性</span></span></a><a class="toc-card" href="#chapter-20"><span class="toc-num">20</span><span class="toc-body"><span class="toc-name">觀因果品第二十</span><span class="toc-sub">中觀邏輯與解脫心法 · 看透緣起如幻的實相</span></span></a><a class="toc-card" href="#chapter-21"><span class="toc-num">21</span><span class="toc-body"><span class="toc-name">觀成壞品第二十一</span><span class="toc-sub">成與壞的相待解構 · 生滅遷流中無實成壞</span></span></a></div></div>
-<div class="toc-vol"><div class="vol-band"><span class="vol-num">卷四</span><span class="vol-name">觀如來品 — 觀邪見品</span><span class="vol-range">第二十二品至第二十七品 · 如來、二諦、涅槃與全論總結</span></div><div class="toc-grid"><a class="toc-card" href="#chapter-22"><span class="toc-num">22</span><span class="toc-body"><span class="toc-name">觀如來品第二十二</span><span class="toc-sub">中觀智慧 · 破除執著的邏輯與心法解析</span></span></a><a class="toc-card" href="#chapter-23"><span class="toc-num">23</span><span class="toc-body"><span class="toc-name">觀顛倒品第二十三</span><span class="toc-sub">解構煩惱的終極邏輯 · 從情緒受害者到實相遊戲者</span></span></a><a class="toc-card" href="#chapter-24"><span class="toc-num">24</span><span class="toc-body"><span class="toc-name">觀四諦品第二十四</span><span class="toc-sub">空與有的終極辯證 · 二諦與緣起性空的樞紐</span></span></a><a class="toc-card" href="#chapter-25"><span class="toc-num">25</span><span class="toc-body"><span class="toc-name">觀涅槃品第二十五</span><span class="toc-sub">解脫的邏輯與心法 · 涅槃與世間無有少分別</span></span></a><a class="toc-card" href="#chapter-26"><span class="toc-num">26</span><span class="toc-body"><span class="toc-name">觀十二因緣品第二十六</span><span class="toc-sub">流轉與還滅 · 十二支緣起的順逆觀照</span></span></a><a class="toc-card" href="#chapter-27"><span class="toc-num">27</span><span class="toc-body"><span class="toc-name">觀邪見品第二十七</span><span class="toc-sub">破除框架的中道智慧與實修心法</span></span></a></div></div>
+<div class="toc-vol"><div class="vol-band"><span class="vol-num">卷一</span><span class="vol-name">觀因緣品 — 觀染染者品</span><span class="vol-range">第一品至第六品 · 緣起總綱與身心世界的解構</span></div><div class="toc-grid"><div class="toc-card"><a class="toc-card-link" href="#chapter-1"><span class="toc-num">1</span><span class="toc-body"><span class="toc-name">觀因緣品第一</span><span class="toc-sub">八不緣起的總綱 · 從四緣破生確立性空根本</span></span></a><a aria-label="觀因緣品第一 影音導讀" class="toc-yt" href="https://youtu.be/GHVTX2NMj4g" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-2"><span class="toc-num">2</span><span class="toc-body"><span class="toc-name">觀去來品第二</span><span class="toc-sub">金剛慧劍 · 解構時間、運動與去者的自性</span></span></a><a aria-label="觀去來品第二 影音導讀" class="toc-yt" href="https://youtu.be/ZmWHJhgeIqU" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-3"><span class="toc-num">3</span><span class="toc-body"><span class="toc-name">觀六情品第三</span><span class="toc-sub">從「眼不自見」到「無我」的解脫邏輯</span></span></a><a aria-label="觀六情品第三 影音導讀" class="toc-yt" href="https://youtu.be/Dyb4IqBfztk" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-4"><span class="toc-num">4</span><span class="toc-body"><span class="toc-name">觀五陰品第四</span><span class="toc-sub">空性織錦 · 色受想行識與因緣的解構</span></span></a><a aria-label="觀五陰品第四 影音導讀" class="toc-yt" href="https://youtu.be/kssiTsQE9z0" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-5"><span class="toc-num">5</span><span class="toc-body"><span class="toc-name">觀六種品第五</span><span class="toc-sub">從「虛空」看透「實體」與「特徵」的邏輯迷局</span></span></a><a aria-label="觀六種品第五 影音導讀" class="toc-yt" href="https://youtu.be/Q-bYN7PbR2s" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-6"><span class="toc-num">6</span><span class="toc-body"><span class="toc-name">觀染染者品第六</span><span class="toc-sub">情緒與自我的實存性辯證</span></span></a><a aria-label="觀染染者品第六 影音導讀" class="toc-yt" href="https://youtu.be/e9-GKjtyf5M" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div></div></div>
+<div class="toc-vol"><div class="vol-band"><span class="vol-num">卷二</span><span class="vol-name">觀三相品 — 觀合品</span><span class="vol-range">第七品至第十四品 · 有為三相、作者、我與苦行的破除</span></div><div class="toc-grid"><div class="toc-card"><a class="toc-card-link" href="#chapter-7"><span class="toc-num">7</span><span class="toc-body"><span class="toc-name">觀三相品第七</span><span class="toc-sub">破解時間與存在的邏輯迷宮 · 破有為三相</span></span></a><a aria-label="觀三相品第七 影音導讀" class="toc-yt" href="https://youtu.be/C5HiG4zSW48" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-8"><span class="toc-num">8</span><span class="toc-body"><span class="toc-name">觀作作者品第八</span><span class="toc-sub">因果實相 · 行動與主體的解構</span></span></a><a aria-label="觀作作者品第八 影音導讀" class="toc-yt" href="https://youtu.be/1NphDIjI2GQ" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-9"><span class="toc-num">9</span><span class="toc-body"><span class="toc-name">觀本住品第九</span><span class="toc-sub">破除「見聞之前先有自我」的本住假設</span></span></a><a aria-label="觀本住品第九 影音導讀" class="toc-yt" href="https://youtu.be/vsx0c9EgyaM" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-10"><span class="toc-num">10</span><span class="toc-body"><span class="toc-name">觀燃可燃品第十</span><span class="toc-sub">燃與可燃的相待 · 破我與五陰的一異執</span></span></a><a aria-label="觀燃可燃品第十 影音導讀" class="toc-yt" href="https://youtu.be/GcH_bVW4i5k" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-11"><span class="toc-num">11</span><span class="toc-body"><span class="toc-name">觀本際品第十一</span><span class="toc-sub">破解生死虛妄的終極邏輯</span></span></a><a aria-label="觀本際品第十一 影音導讀" class="toc-yt" href="https://youtu.be/_ERgOFeQwIg" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-12"><span class="toc-num">12</span><span class="toc-body"><span class="toc-name">觀苦品第十二</span><span class="toc-sub">痛苦歸因的邏輯解構 · 破四種謬誤，重構緣起視角</span></span></a><a aria-label="觀苦品第十二 影音導讀" class="toc-yt" href="https://youtu.be/7T4CltTWn8Q" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-13"><span class="toc-num">13</span><span class="toc-body"><span class="toc-name">觀行品第十三</span><span class="toc-sub">空性的邏輯 · 諸行虛誑與無性的證成</span></span></a><a aria-label="觀行品第十三 影音導讀" class="toc-yt" href="https://youtu.be/GwOSfn5obXo" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-14"><span class="toc-num">14</span><span class="toc-body"><span class="toc-name">觀合品第十四</span><span class="toc-sub">破見、所見、見者的和合之相</span></span></a><a aria-label="觀合品第十四 影音導讀" class="toc-yt" href="https://youtu.be/CDNdb43UxzY" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div></div></div>
+<div class="toc-vol"><div class="vol-band"><span class="vol-num">卷三</span><span class="vol-name">觀有無品 — 觀成壞品</span><span class="vol-range">第十五品至第二十一品 · 自性、業力與諸法實相的揭示</span></div><div class="toc-grid"><div class="toc-card"><a class="toc-card-link" href="#chapter-15"><span class="toc-num">15</span><span class="toc-body"><span class="toc-name">觀有無品第十五</span><span class="toc-sub">破解實相的辯證演算 · 正破自性與有無二見</span></span></a><a aria-label="觀有無品第十五 影音導讀" class="toc-yt" href="https://youtu.be/OP-yJy7il7g" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-16"><span class="toc-num">16</span><span class="toc-body"><span class="toc-name">觀縛解品第十六</span><span class="toc-sub">破除輪迴與束縛的終極邏輯</span></span></a><a aria-label="觀縛解品第十六 影音導讀" class="toc-yt" href="https://youtu.be/aDFpS6BtfXE" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-17"><span class="toc-num">17</span><span class="toc-body"><span class="toc-name">觀業品第十七</span><span class="toc-sub">從「實有」到「如幻」的業力邏輯解構</span></span></a><a aria-label="觀業品第十七 影音導讀" class="toc-yt" href="https://youtu.be/CIb9TU7NNUc" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-18"><span class="toc-num">18</span><span class="toc-body"><span class="toc-name">觀法品第十八</span><span class="toc-sub">從「無我」契入諸法實相的究竟導讀</span></span></a><a aria-label="觀法品第十八 影音導讀" class="toc-yt" href="https://youtu.be/qJ1XFL1y4aU" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-19"><span class="toc-num">19</span><span class="toc-body"><span class="toc-name">觀時品第十九</span><span class="toc-sub">破過去、現在、未來三時的相待自性</span></span></a><a aria-label="觀時品第十九 影音導讀" class="toc-yt" href="https://youtu.be/F8ZJ_mwtxhg" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-20"><span class="toc-num">20</span><span class="toc-body"><span class="toc-name">觀因果品第二十</span><span class="toc-sub">中觀邏輯與解脫心法 · 看透緣起如幻的實相</span></span></a><a aria-label="觀因果品第二十 影音導讀" class="toc-yt" href="https://youtu.be/2qlkBq3Q_uc" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-21"><span class="toc-num">21</span><span class="toc-body"><span class="toc-name">觀成壞品第二十一</span><span class="toc-sub">成與壞的相待解構 · 生滅遷流中無實成壞</span></span></a><a aria-label="觀成壞品第二十一 影音導讀" class="toc-yt" href="https://youtu.be/oWjo7Z3Sb5U" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div></div></div>
+<div class="toc-vol"><div class="vol-band"><span class="vol-num">卷四</span><span class="vol-name">觀如來品 — 觀邪見品</span><span class="vol-range">第二十二品至第二十七品 · 如來、二諦、涅槃與全論總結</span></div><div class="toc-grid"><div class="toc-card"><a class="toc-card-link" href="#chapter-22"><span class="toc-num">22</span><span class="toc-body"><span class="toc-name">觀如來品第二十二</span><span class="toc-sub">中觀智慧 · 破除執著的邏輯與心法解析</span></span></a><a aria-label="觀如來品第二十二 影音導讀" class="toc-yt" href="https://youtu.be/lOJEAUuKsGs" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-23"><span class="toc-num">23</span><span class="toc-body"><span class="toc-name">觀顛倒品第二十三</span><span class="toc-sub">解構煩惱的終極邏輯 · 從情緒受害者到實相遊戲者</span></span></a><a aria-label="觀顛倒品第二十三 影音導讀" class="toc-yt" href="https://youtu.be/uTC7xCLXeXI" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-24"><span class="toc-num">24</span><span class="toc-body"><span class="toc-name">觀四諦品第二十四</span><span class="toc-sub">空與有的終極辯證 · 二諦與緣起性空的樞紐</span></span></a><a aria-label="觀四諦品第二十四 影音導讀" class="toc-yt" href="https://youtu.be/V_ZaWuibBR4" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-25"><span class="toc-num">25</span><span class="toc-body"><span class="toc-name">觀涅槃品第二十五</span><span class="toc-sub">解脫的邏輯與心法 · 涅槃與世間無有少分別</span></span></a><a aria-label="觀涅槃品第二十五 影音導讀" class="toc-yt" href="https://youtu.be/aLgVfN2Ykz8" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-26"><span class="toc-num">26</span><span class="toc-body"><span class="toc-name">觀十二因緣品第二十六</span><span class="toc-sub">流轉與還滅 · 十二支緣起的順逆觀照</span></span></a><a aria-label="觀十二因緣品第二十六 影音導讀" class="toc-yt" href="https://youtu.be/vEsn03ibNwQ" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div><div class="toc-card"><a class="toc-card-link" href="#chapter-27"><span class="toc-num">27</span><span class="toc-body"><span class="toc-name">觀邪見品第二十七</span><span class="toc-sub">破除框架的中道智慧與實修心法</span></span></a><a aria-label="觀邪見品第二十七 影音導讀" class="toc-yt" href="https://youtu.be/aLDNRUADCkM" onclick="event.stopPropagation();" rel="noopener" target="_blank"><span class="yt-play">▶</span>影音</a></div></div></div>
 </section>
-<section class="chapter" id="chapter-1"><div class="ch-head"><div class="ch-num">卷一　·　第一品</div><div class="ch-name">觀因緣品第一</div><div class="ch-sub">八不緣起的總綱 · 從四緣破生確立性空根本</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>《中論》開宗明義的第一品。龍樹菩薩以「不生亦不滅，不常亦不斷，不一亦不異，不來亦不出」的八不偈總攝全論宗旨，並逐一檢破「因緣、次第緣、緣緣、增上緣」四緣能生實果之說，確立「眾因緣生法，故無自性、本性即空」的根本立場。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+<section class="chapter" id="chapter-1"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-1" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷一　·　第一品</div><div class="ch-name">觀因緣品第一</div><div class="ch-sub">八不緣起的總綱 · 從四緣破生確立性空根本</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>《中論》開宗明義的第一品。龍樹菩薩以「不生亦不滅，不常亦不斷，不一亦不異，不來亦不出」的八不偈總攝全論宗旨，並逐一檢破「因緣、次第緣、緣緣、增上緣」四緣能生實果之說，確立「眾因緣生法，故無自性、本性即空」的根本立場。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec;--text:#2c2416;--text2:#5a4e3a;--text-muted:#6B5B4B;
@@ -880,8 +920,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>八不既立，緣起性空之理已舉其綱。然而世人最難放下的，是親眼可見的「運動」——去、來、行走宛然在目，豈非實有？下一〈觀去來品〉即以此最直觀的現象為標的，示範如何以中觀正理解構「去」的自性。</p></div><a class="next-link" href="#chapter-2">前往 第二品 · 觀去來品第二 →</a></div></section>
-<section class="chapter" id="chapter-2"><div class="ch-head"><div class="ch-num">卷一　·　第二品</div><div class="ch-name">觀去來品第二</div><div class="ch-sub">金剛慧劍 · 解構時間、運動與去者的自性</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>承前品確立緣起性空之綱領，本品轉向最具說服力的「實有」直觀——運動。龍樹以「已去無有去，未去亦無去，離已去未去，去時亦無去」三時推檢，破除去法、去者、去時的自性，顯示連最鮮明的位移現象都了無實體。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>八不既立，緣起性空之理已舉其綱。然而世人最難放下的，是親眼可見的「運動」——去、來、行走宛然在目，豈非實有？下一〈觀去來品〉即以此最直觀的現象為標的，示範如何以中觀正理解構「去」的自性。</p></div><a class="next-link" href="#chapter-2">前往 第二品 · 觀去來品第二 →</a></div></section>
+<section class="chapter" id="chapter-2"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-2" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷一　·　第二品</div><div class="ch-name">觀去來品第二</div><div class="ch-sub">金剛慧劍 · 解構時間、運動與去者的自性</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>承前品確立緣起性空之綱領，本品轉向最具說服力的「實有」直觀——運動。龍樹以「已去無有去，未去亦無去，離已去未去，去時亦無去」三時推檢，破除去法、去者、去時的自性，顯示連最鮮明的位移現象都了無實體。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6b5b4b;
@@ -1300,8 +1397,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>去來既空，「能動的歷程」已被解構。然則「能見、能聞」的感官又如何？人總覺得有一具實在的「眼」在看。下一〈觀六情品〉即移刀於六根，從「眼不自見」一著入手，破感官主體之實。</p></div><a class="next-link" href="#chapter-3">前往 第三品 · 觀六情品第三 →</a></div></section>
-<section class="chapter" id="chapter-3"><div class="ch-head"><div class="ch-num">卷一　·　第三品</div><div class="ch-name">觀六情品第三</div><div class="ch-sub">從「眼不自見」到「無我」的解脫邏輯</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>運動既破，本品轉向認識的器官——眼耳鼻舌身意六根（六情）。龍樹以「是眼則不能，自見其己體；若不能自見，云何見餘物」為樞紐，指出能見之根若無自性，則見、所見、見者三者俱不可得。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>去來既空，「能動的歷程」已被解構。然則「能見、能聞」的感官又如何？人總覺得有一具實在的「眼」在看。下一〈觀六情品〉即移刀於六根，從「眼不自見」一著入手，破感官主體之實。</p></div><a class="next-link" href="#chapter-3">前往 第三品 · 觀六情品第三 →</a></div></section>
+<section class="chapter" id="chapter-3"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-3" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷一　·　第三品</div><div class="ch-name">觀六情品第三</div><div class="ch-sub">從「眼不自見」到「無我」的解脫邏輯</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>運動既破，本品轉向認識的器官——眼耳鼻舌身意六根（六情）。龍樹以「是眼則不能，自見其己體；若不能自見，云何見餘物」為樞紐，指出能見之根若無自性，則見、所見、見者三者俱不可得。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec;--text:#2c2416;--text2:#5a4e3a;--text-muted:#6B5B4B;
@@ -1891,8 +2045,65 @@ A 要靠 B 才能成為 A，B 要靠 A 才能成為 B。兩者都不能&lt;stron
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>六根之「能見」已空。但人們仍執著於被認識的「五蘊聚合」確實構成一個我。下一〈觀五陰品〉即深入色受想行識，破五陰與其因的實有關係。</p></div><a class="next-link" href="#chapter-4">前往 第四品 · 觀五陰品第四 →</a></div></section>
-<section class="chapter" id="chapter-4"><div class="ch-head"><div class="ch-num">卷一　·　第四品</div><div class="ch-name">觀五陰品第四</div><div class="ch-sub">空性織錦 · 色受想行識與因緣的解構</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>六根既破，本品檢視構成身心的五陰——色受想行識。龍樹由「若離於色因，色則不可得；若當離於色，色因不可得」入手，揭示五陰與其因互不能離、亦不能即，五陰聚合並非實我所依。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>六根之「能見」已空。但人們仍執著於被認識的「五蘊聚合」確實構成一個我。下一〈觀五陰品〉即深入色受想行識，破五陰與其因的實有關係。</p></div><a class="next-link" href="#chapter-4">前往 第四品 · 觀五陰品第四 →</a></div></section>
+<section class="chapter" id="chapter-4"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-4" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷一　·　第四品</div><div class="ch-name">觀五陰品第四</div><div class="ch-sub">空性織錦 · 色受想行識與因緣的解構</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>六根既破，本品檢視構成身心的五陰——色受想行識。龍樹由「若離於色因，色則不可得；若當離於色，色因不可得」入手，揭示五陰與其因互不能離、亦不能即，五陰聚合並非實我所依。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec;--text:#2c2416;--text2:#5a4e3a;--text-muted:#6B5B4B;
@@ -2434,8 +2645,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>五陰之「實有依」已破。然而人心又退守一步：縱使五陰非實，承載萬物的地、水、火、風、空、識六界，總該是真實的「材質」吧？下一〈觀六種品〉即以虛空為例破六界。</p></div><a class="next-link" href="#chapter-5">前往 第五品 · 觀六種品第五 →</a></div></section>
-<section class="chapter" id="chapter-5"><div class="ch-head"><div class="ch-num">卷一　·　第五品</div><div class="ch-name">觀六種品第五</div><div class="ch-sub">從「虛空」看透「實體」與「特徵」的邏輯迷局</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>五陰既破，本品檢破構成世界的六界（六種）——地水火風空識。龍樹特舉「虛空」為例：「空相未有時，則無虛空法」，相與法互待而立，無一可獨存，六界俱無自性。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>五陰之「實有依」已破。然而人心又退守一步：縱使五陰非實，承載萬物的地、水、火、風、空、識六界，總該是真實的「材質」吧？下一〈觀六種品〉即以虛空為例破六界。</p></div><a class="next-link" href="#chapter-5">前往 第五品 · 觀六種品第五 →</a></div></section>
+<section class="chapter" id="chapter-5"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-5" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷一　·　第五品</div><div class="ch-name">觀六種品第五</div><div class="ch-sub">從「虛空」看透「實體」與「特徵」的邏輯迷局</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>五陰既破，本品檢破構成世界的六界（六種）——地水火風空識。龍樹特舉「虛空」為例：「空相未有時，則無虛空法」，相與法互待而立，無一可獨存，六界俱無自性。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
   :root {
     --bg: #f7f3ec;
@@ -3022,8 +3290,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>構成世界的「材質」已空。境界與器官皆破之後，最貼身的問題浮現：煩惱情緒——貪染——以及那個「起煩惱的人」，是否實有？下一〈觀染染者品〉即破染與染者。</p></div><a class="next-link" href="#chapter-6">前往 第六品 · 觀染染者品第六 →</a></div></section>
-<section class="chapter" id="chapter-6"><div class="ch-head"><div class="ch-num">卷一　·　第六品</div><div class="ch-name">觀染染者品第六</div><div class="ch-sub">情緒與自我的實存性辯證</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>客觀世界既破，本品轉入主觀情緒：貪染（染法）與起染的人（染者）。龍樹以「若離於染法，先自有染者，因是染欲者，應生於染法」推檢，示染與染者不能先後、不能一異，情緒與自我俱無實體。卷一至此圓滿。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>構成世界的「材質」已空。境界與器官皆破之後，最貼身的問題浮現：煩惱情緒——貪染——以及那個「起煩惱的人」，是否實有？下一〈觀染染者品〉即破染與染者。</p></div><a class="next-link" href="#chapter-6">前往 第六品 · 觀染染者品第六 →</a></div></section>
+<section class="chapter" id="chapter-6"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-6" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷一　·　第六品</div><div class="ch-name">觀染染者品第六</div><div class="ch-sub">情緒與自我的實存性辯證</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>客觀世界既破，本品轉入主觀情緒：貪染（染法）與起染的人（染者）。龍樹以「若離於染法，先自有染者，因是染欲者，應生於染法」推檢，示染與染者不能先後、不能一異，情緒與自我俱無實體。卷一至此圓滿。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -3403,8 +3728,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>卷一從緣起總綱破至情緒主體。進入卷二，龍樹將矛頭指向更精微的對象——使一切「有為法」得以成立的生、住、滅三相。下一〈觀三相品〉即破有為三相。</p></div><a class="next-link" href="#chapter-7">前往 第七品 · 觀三相品第七 →</a></div></section>
-<section class="chapter" id="chapter-7"><div class="ch-head"><div class="ch-num">卷二　·　第七品</div><div class="ch-name">觀三相品第七</div><div class="ch-sub">破解時間與存在的邏輯迷宮 · 破有為三相</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>卷二之始。一切「有為法」之所以被認作真實，正因它具有生、住、滅三種特徵。本品以「若生是有為，則應有三相；若生是無為，何名有為相」的兩難，加上「生生」與「本生」的層層追問，徹底瓦解三相的自性。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>卷一從緣起總綱破至情緒主體。進入卷二，龍樹將矛頭指向更精微的對象——使一切「有為法」得以成立的生、住、滅三相。下一〈觀三相品〉即破有為三相。</p></div><a class="next-link" href="#chapter-7">前往 第七品 · 觀三相品第七 →</a></div></section>
+<section class="chapter" id="chapter-7"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-7" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷二　·　第七品</div><div class="ch-name">觀三相品第七</div><div class="ch-sub">破解時間與存在的邏輯迷宮 · 破有為三相</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>卷二之始。一切「有為法」之所以被認作真實，正因它具有生、住、滅三種特徵。本品以「若生是有為，則應有三相；若生是無為，何名有為相」的兩難，加上「生生」與「本生」的層層追問，徹底瓦解三相的自性。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec;--text:#2c2416;--text2:#5a4e3a;--text-muted:#6B5B4B;
@@ -3833,8 +4215,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>有為三相既破，「被造作之法」已無實。那麼「造作者」呢？人總覺得有一個實在的主體在「作業」。下一〈觀作作者品〉即破作與作者的相待之執。</p></div><a class="next-link" href="#chapter-8">前往 第八品 · 觀作作者品第八 →</a></div></section>
-<section class="chapter" id="chapter-8"><div class="ch-head"><div class="ch-num">卷二　·　第八品</div><div class="ch-name">觀作作者品第八</div><div class="ch-sub">因果實相 · 行動與主體的解構</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>三相既破，本品檢視行動的結構：作業（行為）與作者（行為主體）。龍樹以「決定有作者，不作決定業；決定無作者，不作無定業」的窮舉，示作者與作業互相觀待、無一能先自成立。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>有為三相既破，「被造作之法」已無實。那麼「造作者」呢？人總覺得有一個實在的主體在「作業」。下一〈觀作作者品〉即破作與作者的相待之執。</p></div><a class="next-link" href="#chapter-8">前往 第八品 · 觀作作者品第八 →</a></div></section>
+<section class="chapter" id="chapter-8"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-8" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷二　·　第八品</div><div class="ch-name">觀作作者品第八</div><div class="ch-sub">因果實相 · 行動與主體的解構</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>三相既破，本品檢視行動的結構：作業（行為）與作者（行為主體）。龍樹以「決定有作者，不作決定業；決定無作者，不作無定業」的窮舉，示作者與作業互相觀待、無一能先自成立。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -4295,8 +4734,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>作者與作業俱空。但人會再退守：縱使作者非實，總該有一個「在見聞覺知之前就已存在」的我吧？下一〈觀本住品〉即破此「本住」之我。</p></div><a class="next-link" href="#chapter-9">前往 第九品 · 觀本住品第九 →</a></div></section>
-<section class="chapter" id="chapter-9"><div class="ch-head"><div class="ch-num">卷二　·　第九品</div><div class="ch-name">觀本住品第九</div><div class="ch-sub">破除「見聞之前先有自我」的本住假設</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>作作者既破，本品直指最深的我執——「本住」，即一個先於見、聞、受、覺而獨存的自我。龍樹以「若離眼耳等，而有本住者，亦應離本住，而有眼耳等」推檢，示本住與諸根互不能離，先在的自我了不可得。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>作者與作業俱空。但人會再退守：縱使作者非實，總該有一個「在見聞覺知之前就已存在」的我吧？下一〈觀本住品〉即破此「本住」之我。</p></div><a class="next-link" href="#chapter-9">前往 第九品 · 觀本住品第九 →</a></div></section>
+<section class="chapter" id="chapter-9"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-9" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷二　·　第九品</div><div class="ch-name">觀本住品第九</div><div class="ch-sub">破除「見聞之前先有自我」的本住假設</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>作作者既破，本品直指最深的我執——「本住」，即一個先於見、聞、受、覺而獨存的自我。龍樹以「若離眼耳等，而有本住者，亦應離本住，而有眼耳等」推檢，示本住與諸根互不能離，先在的自我了不可得。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -4759,8 +5255,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>「先在之我」既破，龍樹再借一個生動的譬喻收束我執。下一〈觀燃可燃品〉即以火與柴為喻，破我與五陰的一異俱不成。</p></div><a class="next-link" href="#chapter-10">前往 第十品 · 觀燃可燃品第十 →</a></div></section>
-<section class="chapter" id="chapter-10"><div class="ch-head"><div class="ch-num">卷二　·　第十品</div><div class="ch-name">觀燃可燃品第十</div><div class="ch-sub">燃與可燃的相待 · 破我與五陰的一異執</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>承前品破「本住」，本品以「燃（火）」喻我、「可燃（柴）」喻五陰，檢驗二者關係。龍樹以「若燃是可燃，作作者則一；若燃異可燃，離可燃有燃」的一異兩破，示我與五陰非一非異，我執無處可立。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>「先在之我」既破，龍樹再借一個生動的譬喻收束我執。下一〈觀燃可燃品〉即以火與柴為喻，破我與五陰的一異俱不成。</p></div><a class="next-link" href="#chapter-10">前往 第十品 · 觀燃可燃品第十 →</a></div></section>
+<section class="chapter" id="chapter-10"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-10" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷二　·　第十品</div><div class="ch-name">觀燃可燃品第十</div><div class="ch-sub">燃與可燃的相待 · 破我與五陰的一異執</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>承前品破「本住」，本品以「燃（火）」喻我、「可燃（柴）」喻五陰，檢驗二者關係。龍樹以「若燃是可燃，作作者則一；若燃異可燃，離可燃有燃」的一異兩破，示我與五陰非一非異，我執無處可立。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -5176,8 +5729,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>以燃喻收束我執之後，視野再放大到時間的長河：生死輪迴可有一個起點？下一〈觀本際品〉即破生死「本際」之說。</p></div><a class="next-link" href="#chapter-11">前往 第十一品 · 觀本際品第十一 →</a></div></section>
-<section class="chapter" id="chapter-11"><div class="ch-head"><div class="ch-num">卷二　·　第十一品</div><div class="ch-name">觀本際品第十一</div><div class="ch-sub">破解生死虛妄的終極邏輯</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>燃可燃之喻既明我空，本品擴及時間：生死流轉是否有一個最初的起點（本際）？龍樹引「大聖之所說，本際不可得」，以生與死孰先孰後的兩難，示輪迴無始、本際畢竟不可得。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>以燃喻收束我執之後，視野再放大到時間的長河：生死輪迴可有一個起點？下一〈觀本際品〉即破生死「本際」之說。</p></div><a class="next-link" href="#chapter-11">前往 第十一品 · 觀本際品第十一 →</a></div></section>
+<section class="chapter" id="chapter-11"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-11" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷二　·　第十一品</div><div class="ch-name">觀本際品第十一</div><div class="ch-sub">破解生死虛妄的終極邏輯</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>燃可燃之喻既明我空，本品擴及時間：生死流轉是否有一個最初的起點（本際）？龍樹引「大聖之所說，本際不可得」，以生與死孰先孰後的兩難，示輪迴無始、本際畢竟不可得。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -5809,8 +6419,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>生死本際既不可得，那麼流轉的核心經驗——「苦」——它從何而生？是自作、他作、共作，還是無因而作？下一〈觀苦品〉即破苦的四種來源。</p></div><a class="next-link" href="#chapter-12">前往 第十二品 · 觀苦品第十二 →</a></div></section>
-<section class="chapter" id="chapter-12"><div class="ch-head"><div class="ch-num">卷二　·　第十二品</div><div class="ch-name">觀苦品第十二</div><div class="ch-sub">痛苦歸因的邏輯解構 · 破四種謬誤，重構緣起視角</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>本際既破，本品聚焦於最切身的經驗——苦。龍樹以「苦自作、他作、共作、無因作」四句窮舉並一一遮破，示苦無實體的歸因，唯是緣起；不僅苦如此，外法亦然。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>生死本際既不可得，那麼流轉的核心經驗——「苦」——它從何而生？是自作、他作、共作，還是無因而作？下一〈觀苦品〉即破苦的四種來源。</p></div><a class="next-link" href="#chapter-12">前往 第十二品 · 觀苦品第十二 →</a></div></section>
+<section class="chapter" id="chapter-12"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-12" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷二　·　第十二品</div><div class="ch-name">觀苦品第十二</div><div class="ch-sub">痛苦歸因的邏輯解構 · 破四種謬誤，重構緣起視角</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>本際既破，本品聚焦於最切身的經驗——苦。龍樹以「苦自作、他作、共作、無因作」四句窮舉並一一遮破，示苦無實體的歸因，唯是緣起；不僅苦如此，外法亦然。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -6250,8 +6917,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>苦的歸因既被解構，更普遍的問題隨之而來：一切「行」——遷流造作的有為法——是否有真實不變的體性？下一〈觀行品〉即破諸行的自性。</p></div><a class="next-link" href="#chapter-13">前往 第十三品 · 觀行品第十三 →</a></div></section>
-<section class="chapter" id="chapter-13"><div class="ch-head"><div class="ch-num">卷二　·　第十三品</div><div class="ch-name">觀行品第十三</div><div class="ch-sub">空性的邏輯 · 諸行虛誑與無性的證成</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>承前品破苦，本品擴及一切「行」（有為造作之法）。龍樹以「諸行妄取故，是名為虛誑」與「諸法有異故，知皆是無性」，從虛妄與變異兩面證成一切行皆無自性，並破「空」亦被執為實的偏失。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>苦的歸因既被解構，更普遍的問題隨之而來：一切「行」——遷流造作的有為法——是否有真實不變的體性？下一〈觀行品〉即破諸行的自性。</p></div><a class="next-link" href="#chapter-13">前往 第十三品 · 觀行品第十三 →</a></div></section>
+<section class="chapter" id="chapter-13"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-13" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷二　·　第十三品</div><div class="ch-name">觀行品第十三</div><div class="ch-sub">空性的邏輯 · 諸行虛誑與無性的證成</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>承前品破苦，本品擴及一切「行」（有為造作之法）。龍樹以「諸行妄取故，是名為虛誑」與「諸法有異故，知皆是無性」，從虛妄與變異兩面證成一切行皆無自性，並破「空」亦被執為實的偏失。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root {
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -6655,8 +7379,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>諸行既空，且「空」亦不可執。那麼當諸法和「合」——見、所見、見者相遇而成認識——這個「合」是否實有？下一〈觀合品〉即破和合之相。</p></div><a class="next-link" href="#chapter-14">前往 第十四品 · 觀合品第十四 →</a></div></section>
-<section class="chapter" id="chapter-14"><div class="ch-head"><div class="ch-num">卷二　·　第十四品</div><div class="ch-name">觀合品第十四</div><div class="ch-sub">破見、所見、見者的和合之相</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>諸行既空，本品檢視「合」——見、所見、見者三者相遇而成認識的接觸。龍樹以「見、可見、見者，是三各異方，如是三法異，終無有合時」，示異者不合、同者無待合，和合之相不可得。卷二至此圓滿。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>諸行既空，且「空」亦不可執。那麼當諸法和「合」——見、所見、見者相遇而成認識——這個「合」是否實有？下一〈觀合品〉即破和合之相。</p></div><a class="next-link" href="#chapter-14">前往 第十四品 · 觀合品第十四 →</a></div></section>
+<section class="chapter" id="chapter-14"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-14" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷二　·　第十四品</div><div class="ch-name">觀合品第十四</div><div class="ch-sub">破見、所見、見者的和合之相</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>諸行既空，本品檢視「合」——見、所見、見者三者相遇而成認識的接觸。龍樹以「見、可見、見者，是三各異方，如是三法異，終無有合時」，示異者不合、同者無待合，和合之相不可得。卷二至此圓滿。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec;--text:#2c2416;--text2:#5a4e3a;--text-muted:#6B5B4B;
@@ -7123,8 +7904,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>卷二歷破有為、作者、我、苦、行、合。進入卷三，龍樹將直探一切戲論的總根源——「自性」本身。下一〈觀有無品〉即正破自性與他性、有與無。</p></div><a class="next-link" href="#chapter-15">前往 第十五品 · 觀有無品第十五 →</a></div></section>
-<section class="chapter" id="chapter-15"><div class="ch-head"><div class="ch-num">卷三　·　第十五品</div><div class="ch-name">觀有無品第十五</div><div class="ch-sub">破解實相的辯證演算 · 正破自性與有無二見</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>卷三之始，亦是全論的理論核心。本品正面解剖「自性」：「眾緣中有性，是事則不然；性從眾緣出，即名為作法。」自性既不從緣生、又不可言無，龍樹由此遮破「有」「無」二見而顯中道。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>卷二歷破有為、作者、我、苦、行、合。進入卷三，龍樹將直探一切戲論的總根源——「自性」本身。下一〈觀有無品〉即正破自性與他性、有與無。</p></div><a class="next-link" href="#chapter-15">前往 第十五品 · 觀有無品第十五 →</a></div></section>
+<section class="chapter" id="chapter-15"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-15" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷三　·　第十五品</div><div class="ch-name">觀有無品第十五</div><div class="ch-sub">破解實相的辯證演算 · 正破自性與有無二見</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>卷三之始，亦是全論的理論核心。本品正面解剖「自性」：「眾緣中有性，是事則不然；性從眾緣出，即名為作法。」自性既不從緣生、又不可言無，龍樹由此遮破「有」「無」二見而顯中道。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -7504,8 +8342,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>自性、他性、有、無俱破，戲論之根已斷。然而眾生最深的怖畏，是「被繫縛於輪迴、又能得解脫」。下一〈觀縛解品〉即破縛與解的實有。</p></div><a class="next-link" href="#chapter-16">前往 第十六品 · 觀縛解品第十六 →</a></div></section>
-<section class="chapter" id="chapter-16"><div class="ch-head"><div class="ch-num">卷三　·　第十六品</div><div class="ch-name">觀縛解品第十六</div><div class="ch-sub">破除輪迴與束縛的終極邏輯</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>自性既破，本品檢視輪迴與解脫的結構：誰被繫縛？誰得解脫？龍樹以「諸行往來者，常不應往來，無常亦不應」與「縛者無有解，不縛亦無解」，示縛、解俱不可得，生死涅槃非二。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>自性、他性、有、無俱破，戲論之根已斷。然而眾生最深的怖畏，是「被繫縛於輪迴、又能得解脫」。下一〈觀縛解品〉即破縛與解的實有。</p></div><a class="next-link" href="#chapter-16">前往 第十六品 · 觀縛解品第十六 →</a></div></section>
+<section class="chapter" id="chapter-16"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-16" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷三　·　第十六品</div><div class="ch-name">觀縛解品第十六</div><div class="ch-sub">破除輪迴與束縛的終極邏輯</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>自性既破，本品檢視輪迴與解脫的結構：誰被繫縛？誰得解脫？龍樹以「諸行往來者，常不應往來，無常亦不應」與「縛者無有解，不縛亦無解」，示縛、解俱不可得，生死涅槃非二。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 /* ===== Color tokens ===== */
 :root{
@@ -8056,8 +8951,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>縛解既空，緊接而來的疑難是：若無實在的繫縛者，善惡「業」如何流轉、果報如何不失？下一〈觀業品〉即破業的自性而存業果之不失。</p></div><a class="next-link" href="#chapter-17">前往 第十七品 · 觀業品第十七 →</a></div></section>
-<section class="chapter" id="chapter-17"><div class="ch-head"><div class="ch-num">卷三　·　第十七品</div><div class="ch-name">觀業品第十七</div><div class="ch-sub">從「實有」到「如幻」的業力邏輯解構</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>縛解既破，本品面對最棘手的難題——業與果報。龍樹遍破「業有自性」的種種建構（不失法、相續、如券契等），最終以「業如幻如夢，如焰亦如響」收束：業無自性而因果不失。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>縛解既空，緊接而來的疑難是：若無實在的繫縛者，善惡「業」如何流轉、果報如何不失？下一〈觀業品〉即破業的自性而存業果之不失。</p></div><a class="next-link" href="#chapter-17">前往 第十七品 · 觀業品第十七 →</a></div></section>
+<section class="chapter" id="chapter-17"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-17" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷三　·　第十七品</div><div class="ch-name">觀業品第十七</div><div class="ch-sub">從「實有」到「如幻」的業力邏輯解構</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>縛解既破，本品面對最棘手的難題——業與果報。龍樹遍破「業有自性」的種種建構（不失法、相續、如券契等），最終以「業如幻如夢，如焰亦如響」收束：業無自性而因果不失。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
  --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -8392,8 +9344,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>業既如幻，遍破至此，全論已從各個角度遮遣實有見。下一〈觀法品〉是《中論》的樞紐——龍樹不再只破，而正面開顯「諸法實相」與「無我」之正觀。</p></div><a class="next-link" href="#chapter-18">前往 第十八品 · 觀法品第十八 →</a></div></section>
-<section class="chapter" id="chapter-18"><div class="ch-head"><div class="ch-num">卷三　·　第十八品</div><div class="ch-name">觀法品第十八</div><div class="ch-sub">從「無我」契入諸法實相的究竟導讀</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>本品是全論的轉樞。龍樹收束前十七品的遮破，正面開顯諸法實相：「若我是五陰，我即為生滅」破我；「自知不隨他，寂滅無戲論，無異無分別，是則名實相」示真。實相者，戲論盡息、心行處滅。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>業既如幻，遍破至此，全論已從各個角度遮遣實有見。下一〈觀法品〉是《中論》的樞紐——龍樹不再只破，而正面開顯「諸法實相」與「無我」之正觀。</p></div><a class="next-link" href="#chapter-18">前往 第十八品 · 觀法品第十八 →</a></div></section>
+<section class="chapter" id="chapter-18"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-18" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷三　·　第十八品</div><div class="ch-name">觀法品第十八</div><div class="ch-sub">從「無我」契入諸法實相的究竟導讀</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>本品是全論的轉樞。龍樹收束前十七品的遮破，正面開顯諸法實相：「若我是五陰，我即為生滅」破我；「自知不隨他，寂滅無戲論，無異無分別，是則名實相」示真。實相者，戲論盡息、心行處滅。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -8842,8 +9851,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>諸法實相既已正面標舉，龍樹回頭再清理幾個殘餘的實有據點。首先是「時間」——過去、現在、未來看似真實的框架。下一〈觀時品〉即破時的自性。</p></div><a class="next-link" href="#chapter-19">前往 第十九品 · 觀時品第十九 →</a></div></section>
-<section class="chapter" id="chapter-19"><div class="ch-head"><div class="ch-num">卷三　·　第十九品</div><div class="ch-name">觀時品第十九</div><div class="ch-sub">破過去、現在、未來三時的相待自性</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>實相既明，本品回頭清理「時間」這一殘餘據點。龍樹以「若因過去時，有未來現在，未來及現在，應在過去時」的相待推檢，示三時互待而立、無一能獨存，時無自性。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>諸法實相既已正面標舉，龍樹回頭再清理幾個殘餘的實有據點。首先是「時間」——過去、現在、未來看似真實的框架。下一〈觀時品〉即破時的自性。</p></div><a class="next-link" href="#chapter-19">前往 第十九品 · 觀時品第十九 →</a></div></section>
+<section class="chapter" id="chapter-19"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-19" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷三　·　第十九品</div><div class="ch-name">觀時品第十九</div><div class="ch-sub">破過去、現在、未來三時的相待自性</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>實相既明，本品回頭清理「時間」這一殘餘據點。龍樹以「若因過去時，有未來現在，未來及現在，應在過去時」的相待推檢，示三時互待而立、無一能獨存，時無自性。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -9210,8 +10276,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>時間既空，與時間最相關的「因果相續」隨之受檢：因滅果生、因果相續，這個過程是否真實？下一〈觀因果品〉即破因果和合生果之說。</p></div><a class="next-link" href="#chapter-20">前往 第二十品 · 觀因果品第二十 →</a></div></section>
-<section class="chapter" id="chapter-20"><div class="ch-head"><div class="ch-num">卷三　·　第二十品</div><div class="ch-name">觀因果品第二十</div><div class="ch-sub">中觀邏輯與解脫心法 · 看透緣起如幻的實相</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>時既破，本品檢視因與果的關係：眾緣和合能否真實地「生」出果？龍樹以「若眾緣和合，而有果生者，和合中已有，何須和合生」等多重推檢，示因中有果、無果俱不成，因果如幻。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>時間既空，與時間最相關的「因果相續」隨之受檢：因滅果生、因果相續，這個過程是否真實？下一〈觀因果品〉即破因果和合生果之說。</p></div><a class="next-link" href="#chapter-20">前往 第二十品 · 觀因果品第二十 →</a></div></section>
+<section class="chapter" id="chapter-20"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-20" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷三　·　第二十品</div><div class="ch-name">觀因果品第二十</div><div class="ch-sub">中觀邏輯與解脫心法 · 看透緣起如幻的實相</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>時既破，本品檢視因與果的關係：眾緣和合能否真實地「生」出果？龍樹以「若眾緣和合，而有果生者，和合中已有，何須和合生」等多重推檢，示因中有果、無果俱不成，因果如幻。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec;--text:#2c2416;--text2:#5a4e3a;--text-muted:#6B5B4B;
@@ -9590,8 +10713,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>因果生滅既被解構，更宏觀的「世界的成立與毀壞」隨之浮現：成、壞是否實有？下一〈觀成壞品〉即破成壞之相。</p></div><a class="next-link" href="#chapter-21">前往 第二十一品 · 觀成壞品第二十一 →</a></div></section>
-<section class="chapter" id="chapter-21"><div class="ch-head"><div class="ch-num">卷三　·　第二十一品</div><div class="ch-name">觀成壞品第二十一</div><div class="ch-sub">成與壞的相待解構 · 生滅遷流中無實成壞</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>因果既破，本品放大到世界與生命的「成（生起）」與「壞（毀滅）」。龍樹以「離成及共成，是中無有壞；離壞及共壞，是中亦無成」的相待推檢，示成壞互依、生滅遷流中無實成壞。卷三至此圓滿。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>因果生滅既被解構，更宏觀的「世界的成立與毀壞」隨之浮現：成、壞是否實有？下一〈觀成壞品〉即破成壞之相。</p></div><a class="next-link" href="#chapter-21">前往 第二十一品 · 觀成壞品第二十一 →</a></div></section>
+<section class="chapter" id="chapter-21"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-21" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷三　·　第二十一品</div><div class="ch-name">觀成壞品第二十一</div><div class="ch-sub">成與壞的相待解構 · 生滅遷流中無實成壞</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>因果既破，本品放大到世界與生命的「成（生起）」與「壞（毀滅）」。龍樹以「離成及共成，是中無有壞；離壞及共壞，是中亦無成」的相待推檢，示成壞互依、生滅遷流中無實成壞。卷三至此圓滿。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -9979,8 +11159,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>卷三從自性破至成壞。進入卷四，龍樹將矛頭指向最崇高的對象——佛陀本身（如來），以示中觀正理無所不遍。下一〈觀如來品〉即破如來的自性。</p></div><a class="next-link" href="#chapter-22">前往 第二十二品 · 觀如來品第二十二 →</a></div></section>
-<section class="chapter" id="chapter-22"><div class="ch-head"><div class="ch-num">卷四　·　第二十二品</div><div class="ch-name">觀如來品第二十二</div><div class="ch-sub">中觀智慧 · 破除執著的邏輯與心法解析</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>卷四之始。本品以中觀正理檢視最崇高者——如來。龍樹以「非陰不離陰，此彼不相在，如來不有陰，何處有如來」推檢，示如來不即五陰、不離五陰，如來之自性亦不可得，乃至如來性即世間性。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>卷三從自性破至成壞。進入卷四，龍樹將矛頭指向最崇高的對象——佛陀本身（如來），以示中觀正理無所不遍。下一〈觀如來品〉即破如來的自性。</p></div><a class="next-link" href="#chapter-22">前往 第二十二品 · 觀如來品第二十二 →</a></div></section>
+<section class="chapter" id="chapter-22"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-22" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷四　·　第二十二品</div><div class="ch-name">觀如來品第二十二</div><div class="ch-sub">中觀智慧 · 破除執著的邏輯與心法解析</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>卷四之始。本品以中觀正理檢視最崇高者——如來。龍樹以「非陰不離陰，此彼不相在，如來不有陰，何處有如來」推檢，示如來不即五陰、不離五陰，如來之自性亦不可得，乃至如來性即世間性。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -10444,8 +11681,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>如來既不可以自性求，那使眾生流轉的「顛倒」——常樂我淨四倒——又是否實有？下一〈觀顛倒品〉即破顛倒與煩惱。</p></div><a class="next-link" href="#chapter-23">前往 第二十三品 · 觀顛倒品第二十三 →</a></div></section>
-<section class="chapter" id="chapter-23"><div class="ch-head"><div class="ch-num">卷四　·　第二十三品</div><div class="ch-name">觀顛倒品第二十三</div><div class="ch-sub">解構煩惱的終極邏輯 · 從情緒受害者到實相遊戲者</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>如來既破，本品轉向煩惱的根源——顛倒（淨、樂、常、我四種錯認）。龍樹以「淨不淨顛倒，是則無自性，云何因此二，而生諸煩惱」推檢，示顛倒無實、煩惱無生，淨染本不可得。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>如來既不可以自性求，那使眾生流轉的「顛倒」——常樂我淨四倒——又是否實有？下一〈觀顛倒品〉即破顛倒與煩惱。</p></div><a class="next-link" href="#chapter-23">前往 第二十三品 · 觀顛倒品第二十三 →</a></div></section>
+<section class="chapter" id="chapter-23"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-23" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷四　·　第二十三品</div><div class="ch-name">觀顛倒品第二十三</div><div class="ch-sub">解構煩惱的終極邏輯 · 從情緒受害者到實相遊戲者</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>如來既破，本品轉向煩惱的根源——顛倒（淨、樂、常、我四種錯認）。龍樹以「淨不淨顛倒，是則無自性，云何因此二，而生諸煩惱」推檢，示顛倒無實、煩惱無生，淨染本不可得。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -10941,8 +12235,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>顛倒煩惱既空，前面遍破已盡。然而最大的疑難仍在：「若一切皆空，則四聖諦、修證、三寶豈非俱壞？」下一〈觀四諦品〉即正面回應此一根本詰難。</p></div><a class="next-link" href="#chapter-24">前往 第二十四品 · 觀四諦品第二十四 →</a></div></section>
-<section class="chapter" id="chapter-24"><div class="ch-head"><div class="ch-num">卷四　·　第二十四品</div><div class="ch-name">觀四諦品第二十四</div><div class="ch-sub">空與有的終極辯證 · 二諦與緣起性空的樞紐</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>本品是全論最著名、份量最重的一品。面對「若一切皆空則四諦三寶俱壞」的詰難，龍樹以二諦判教回應，並標舉名偈：「眾因緣生法，我說即是空，亦為是假名，亦是中道義」「以有空義故，一切法得成」——空非壞法，正因空故一切法得以成立。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>顛倒煩惱既空，前面遍破已盡。然而最大的疑難仍在：「若一切皆空，則四聖諦、修證、三寶豈非俱壞？」下一〈觀四諦品〉即正面回應此一根本詰難。</p></div><a class="next-link" href="#chapter-24">前往 第二十四品 · 觀四諦品第二十四 →</a></div></section>
+<section class="chapter" id="chapter-24"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-24" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷四　·　第二十四品</div><div class="ch-name">觀四諦品第二十四</div><div class="ch-sub">空與有的終極辯證 · 二諦與緣起性空的樞紐</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>本品是全論最著名、份量最重的一品。面對「若一切皆空則四諦三寶俱壞」的詰難，龍樹以二諦判教回應，並標舉名偈：「眾因緣生法，我說即是空，亦為是假名，亦是中道義」「以有空義故，一切法得成」——空非壞法，正因空故一切法得以成立。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -11479,8 +12830,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>空義既明，四諦三寶不壞。順此而下，最高的證境——涅槃——其性質如何？是有？是無？下一〈觀涅槃品〉即破涅槃的四句執著。</p></div><a class="next-link" href="#chapter-25">前往 第二十五品 · 觀涅槃品第二十五 →</a></div></section>
-<section class="chapter" id="chapter-25"><div class="ch-head"><div class="ch-num">卷四　·　第二十五品</div><div class="ch-name">觀涅槃品第二十五</div><div class="ch-sub">解脫的邏輯與心法 · 涅槃與世間無有少分別</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>空義既正，本品檢視最高證境——涅槃。龍樹以「有、無、亦有亦無、非有非無」四句遍破對涅槃的執取，並標舉「涅槃與世間，無有少分別」——涅槃非別有一物可得，即生死實相而證。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>空義既明，四諦三寶不壞。順此而下，最高的證境——涅槃——其性質如何？是有？是無？下一〈觀涅槃品〉即破涅槃的四句執著。</p></div><a class="next-link" href="#chapter-25">前往 第二十五品 · 觀涅槃品第二十五 →</a></div></section>
+<section class="chapter" id="chapter-25"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-25" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷四　·　第二十五品</div><div class="ch-name">觀涅槃品第二十五</div><div class="ch-sub">解脫的邏輯與心法 · 涅槃與世間無有少分別</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>空義既正，本品檢視最高證境——涅槃。龍樹以「有、無、亦有亦無、非有非無」四句遍破對涅槃的執取，並標舉「涅槃與世間，無有少分別」——涅槃非別有一物可得，即生死實相而證。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec;--text:#2c2416;--text2:#5a4e3a;--text-muted:#6B5B4B;
@@ -11786,8 +13194,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>涅槃既不離世間實相，那麼世間流轉的具體機制——十二因緣——又該如何觀照？下一〈觀十二因緣品〉即順逆觀十二支緣起。</p></div><a class="next-link" href="#chapter-26">前往 第二十六品 · 觀十二因緣品第二十六 →</a></div></section>
-<section class="chapter" id="chapter-26"><div class="ch-head"><div class="ch-num">卷四　·　第二十六品</div><div class="ch-name">觀十二因緣品第二十六</div><div class="ch-sub">流轉與還滅 · 十二支緣起的順逆觀照</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>與前諸品「遮破」不同，本品正面鋪陳生死流轉的機制——十二因緣。龍樹順觀「無明緣行、行緣識……」示流轉，逆觀「無明滅則行滅……」示還滅，揭示緣起既是繫縛之鏈、亦是解脫之門。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>涅槃既不離世間實相，那麼世間流轉的具體機制——十二因緣——又該如何觀照？下一〈觀十二因緣品〉即順逆觀十二支緣起。</p></div><a class="next-link" href="#chapter-26">前往 第二十六品 · 觀十二因緣品第二十六 →</a></div></section>
+<section class="chapter" id="chapter-26"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-26" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷四　·　第二十六品</div><div class="ch-name">觀十二因緣品第二十六</div><div class="ch-sub">流轉與還滅 · 十二支緣起的順逆觀照</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>與前諸品「遮破」不同，本品正面鋪陳生死流轉的機制——十二因緣。龍樹順觀「無明緣行、行緣識……」示流轉，逆觀「無明滅則行滅……」示還滅，揭示緣起既是繫縛之鏈、亦是解脫之門。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -12216,8 +13681,65 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>流轉還滅之理既明，全論將收於最後的清理：眾生對過去、未來、自我、世界所起的種種「邪見」。下一〈觀邪見品〉即破諸邊見而總結全論。</p></div><a class="next-link" href="#chapter-27">前往 第二十七品 · 觀邪見品第二十七 →</a></div></section>
-<section class="chapter" id="chapter-27"><div class="ch-head"><div class="ch-num">卷四　·　第二十七品</div><div class="ch-name">觀邪見品第二十七</div><div class="ch-sub">破除框架的中道智慧與實修心法</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>全論最後一品。龍樹總破眾生對「過去世、未來世、我、世間」所起的種種邪見邊見（即十四無記一類的戲論），示一切見依緣起性空而自然瓦解。末以「瞿曇大聖主，憐愍說是法，悉斷一切見，我今稽首禮」歸敬作結，全論圓滿。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>流轉還滅之理既明，全論將收於最後的清理：眾生對過去、未來、自我、世界所起的種種「邪見」。下一〈觀邪見品〉即破諸邊見而總結全論。</p></div><a class="next-link" href="#chapter-27">前往 第二十七品 · 觀邪見品第二十七 →</a></div></section>
+<section class="chapter" id="chapter-27"><div class="ch-head"><button class="wy-copy-btn" data-copy-target="#chapter-27" title="複製本品連結" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>連結</span></button><div class="ch-num">卷四　·　第二十七品</div><div class="ch-name">觀邪見品第二十七</div><div class="ch-sub">破除框架的中道智慧與實修心法</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>全論最後一品。龍樹總破眾生對「過去世、未來世、我、世間」所起的種種邪見邊見（即十四無記一類的戲論），示一切見依緣起性空而自然瓦解。末以「瞿曇大聖主，憐愍說是法，悉斷一切見，我今稽首禮」歸敬作結，全論圓滿。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-Hant&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;&lt;style&gt;
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -12765,7 +14287,64 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
     }catch(ex){}
   },true);
 })();
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe><div class="ch-end-note">《中論》全二十七品至此圓滿　·　瞿曇大聖主，憐愍說是法，悉斷一切見，我今稽首禮</div></div></section>
+&lt;/script&gt;
+&lt;style id=&quot;wy-sec-copy-style&quot;&gt;
+.wy-sec-copy{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:transparent;border:1px solid rgba(184,134,11,.35);
+  color:#b8860b;font-family:'Noto Sans TC',sans-serif;
+  margin-left:10px;vertical-align:middle;cursor:pointer;
+  opacity:.45;padding:0;line-height:1;
+  transition:all .22s ease;
+}
+.wy-sec-copy:hover{
+  opacity:1;background:rgba(184,134,11,.18);
+  border-color:#d4a84b;color:#8a6914;
+  transform:translateY(-1px);
+}
+.wy-sec-copy.copied{
+  background:rgba(106,168,114,.25);border-color:#88c096;color:#3b7d49;
+  opacity:1;transform:none;
+}
+.wy-sec-copy svg{width:11px;height:11px;display:block;flex:none;}
+h2:hover .wy-sec-copy{opacity:.82;}
+&lt;/style&gt;
+&lt;script id=&quot;wy-sec-copy-init&quot;&gt;
+(function(){
+  if(!window.frameElement) return;
+  var ICON = '&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;';
+  var anchors = document.querySelectorAll('a[id]');
+  anchors.forEach(function(a){
+    var id = a.getAttribute('id') || '';
+    var parts = id.split('-');
+    /* 只在「節」層級（chapter-N-M-K, 四段）放鈕 */
+    if(parts.length !== 4 || parts[0] !== 'chapter') return;
+    /* 找到所屬 h2 */
+    var h2 = a.closest('h2');
+    if(!h2) return;
+    if(h2.querySelector('.wy-sec-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wy-sec-copy';
+    btn.title = '複製本節連結';
+    btn.setAttribute('data-anchor', id);
+    btn.innerHTML = ICON;
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      try{
+        if(window.parent &amp;&amp; window.parent.wyCopyAnchor){
+          window.parent.wyCopyAnchor('#' + id);
+        }
+        btn.classList.add('copied');
+        setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+      }catch(ex){}
+    });
+    h2.appendChild(btn);
+  });
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe><div class="ch-end-note">《中論》全二十七品至此圓滿　·　瞿曇大聖主，憐愍說是法，悉斷一切見，我今稽首禮</div></div></section>
 </main>
 <footer class="site-footer">
 <div class="ft-title">中　論 · 全二十七品彙整閱讀本</div>
@@ -12784,7 +14363,62 @@ img{-webkit-user-drag:none!important;pointer-events:none;}
 </div>
 </div>
 <div id="sbTip"></div>
+<div aria-live="polite" id="wyToast" role="status"></div>
 <script>
+/* ── 一鍵複製本節／本品連結（全域，亦提供 iframe 內呼叫）── */
+(function(){
+  var toast = document.getElementById('wyToast');
+  var hideT = null;
+  function showToast(msg){
+    if(!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    if(hideT) clearTimeout(hideT);
+    hideT = setTimeout(function(){ toast.classList.remove('show'); }, 1800);
+  }
+  function copyLink(anchor){
+    var url = location.origin + location.pathname;
+    if(anchor){
+      if(anchor.charAt(0) !== '#') anchor = '#' + anchor;
+      url += anchor;
+    }
+    var done = function(){ showToast('已複製連結　' + (anchor || '首頁')); };
+    var fail = function(){ showToast('複製失敗，請手動選取網址'); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(done).catch(function(){
+        // fallback
+        try{
+          var ta = document.createElement('textarea');
+          ta.value = url; ta.style.position='fixed'; ta.style.opacity='0';
+          document.body.appendChild(ta); ta.select();
+          document.execCommand('copy'); document.body.removeChild(ta);
+          done();
+        }catch(e){ fail(); }
+      });
+    } else {
+      try{
+        var ta = document.createElement('textarea');
+        ta.value = url; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
+        done();
+      }catch(e){ fail(); }
+    }
+  }
+  // 暴露給 iframe（同源 srcdoc）使用
+  window.wyCopyAnchor = copyLink;
+  // 綁定外層所有複製鈕
+  document.querySelectorAll('.wy-copy-btn').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      var target = btn.getAttribute('data-copy-target');
+      copyLink(target);
+      btn.classList.add('copied');
+      setTimeout(function(){ btn.classList.remove('copied'); }, 1500);
+    });
+  });
+})();
+
 /* ── 防複製（外層）── */
 (function(){
   var blk=function(e){e.preventDefault();return false;};
