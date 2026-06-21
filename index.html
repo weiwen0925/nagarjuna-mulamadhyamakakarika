@@ -121,6 +121,30 @@ body{
   box-shadow:0 3px 14px rgba(0,0,0,.3);border:1px solid rgba(184,134,11,.4);}
 #backTop.show{opacity:1;pointer-events:auto;}
 
+/* ════ 浮動「本品影音」鈕 ════ */
+#chWatch{position:fixed;right:22px;bottom:82px;z-index:118;
+  display:none;align-items:center;gap:8px;
+  background:rgba(30,26,20,.93);border:1px solid var(--gold);
+  color:var(--goldL);font-family:"Noto Sans TC",sans-serif;
+  font-size:14.2px;letter-spacing:2px;padding:8px 16px 8px 12px;
+  border-radius:24px;text-decoration:none;cursor:pointer;
+  box-shadow:0 4px 20px rgba(0,0,0,.42);backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  opacity:0;transform:translateY(8px);
+  transition:opacity .28s ease,transform .28s ease,background .2s,color .2s,box-shadow .2s;}
+#chWatch.show{display:inline-flex;opacity:1;transform:translateY(0);}
+#chWatch:hover{background:rgba(184,134,11,.4);color:#f7e7bd;
+  box-shadow:0 6px 26px rgba(184,134,11,.45);}
+#chWatch .yt-play{display:inline-flex;align-items:center;justify-content:center;
+  width:18px;height:18px;border-radius:50%;background:#cc0000;color:#fff;
+  font-size:9.5px;line-height:1;flex:none;}
+#chWatch .yt-num{font-size:11.6px;letter-spacing:1px;
+  color:var(--gold);opacity:.78;margin-left:2px;}
+@media(max-width:600px){
+  #chWatch{font-size:12.6px;padding:7px 13px;bottom:78px;}
+  #chWatch .yt-num{display:none;}
+}
+
 /* ════ 閱讀進度膠囊 ════ */
 .read-progress{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);
   z-index:120;background:rgba(30,26,20,.92);color:var(--gold);
@@ -389,36 +413,36 @@ body{
 </div>
 <nav class="sb-nav">
 <a class="sb-vol" href="#chapter-1">卷一</a>
-<a class="sb-item" data-ch="1" data-juan="卷一" data-name="觀因緣品第一" data-tip="八不緣起的總綱 · 從四緣破生確立性空根本" href="#chapter-1"><span class="sb-circle">1</span><span class="sb-label">因緣</span></a>
-<a class="sb-item" data-ch="2" data-juan="卷一" data-name="觀去來品第二" data-tip="金剛慧劍 · 解構時間、運動與去者的自性" href="#chapter-2"><span class="sb-circle">2</span><span class="sb-label">去來</span></a>
-<a class="sb-item" data-ch="3" data-juan="卷一" data-name="觀六情品第三" data-tip="從「眼不自見」到「無我」的解脫邏輯" href="#chapter-3"><span class="sb-circle">3</span><span class="sb-label">六情</span></a>
-<a class="sb-item" data-ch="4" data-juan="卷一" data-name="觀五陰品第四" data-tip="空性織錦 · 色受想行識與因緣的解構" href="#chapter-4"><span class="sb-circle">4</span><span class="sb-label">五陰</span></a>
-<a class="sb-item" data-ch="5" data-juan="卷一" data-name="觀六種品第五" data-tip="從「虛空」看透「實體」與「特徵」的邏輯迷局" href="#chapter-5"><span class="sb-circle">5</span><span class="sb-label">六種</span></a>
-<a class="sb-item" data-ch="6" data-juan="卷一" data-name="觀染染者品第六" data-tip="情緒與自我的實存性辯證" href="#chapter-6"><span class="sb-circle">6</span><span class="sb-label">染染者</span></a>
+<a class="sb-item" data-ch="1" data-juan="卷一" data-name="觀因緣品第一" data-tip="八不緣起的總綱 · 從四緣破生確立性空根本" data-yt="https://youtu.be/GHVTX2NMj4g" href="#chapter-1"><span class="sb-circle">1</span><span class="sb-label">因緣</span></a>
+<a class="sb-item" data-ch="2" data-juan="卷一" data-name="觀去來品第二" data-tip="金剛慧劍 · 解構時間、運動與去者的自性" data-yt="https://youtu.be/ZmWHJhgeIqU" href="#chapter-2"><span class="sb-circle">2</span><span class="sb-label">去來</span></a>
+<a class="sb-item" data-ch="3" data-juan="卷一" data-name="觀六情品第三" data-tip="從「眼不自見」到「無我」的解脫邏輯" data-yt="https://youtu.be/Dyb4IqBfztk" href="#chapter-3"><span class="sb-circle">3</span><span class="sb-label">六情</span></a>
+<a class="sb-item" data-ch="4" data-juan="卷一" data-name="觀五陰品第四" data-tip="空性織錦 · 色受想行識與因緣的解構" data-yt="https://youtu.be/kssiTsQE9z0" href="#chapter-4"><span class="sb-circle">4</span><span class="sb-label">五陰</span></a>
+<a class="sb-item" data-ch="5" data-juan="卷一" data-name="觀六種品第五" data-tip="從「虛空」看透「實體」與「特徵」的邏輯迷局" data-yt="https://youtu.be/Q-bYN7PbR2s" href="#chapter-5"><span class="sb-circle">5</span><span class="sb-label">六種</span></a>
+<a class="sb-item" data-ch="6" data-juan="卷一" data-name="觀染染者品第六" data-tip="情緒與自我的實存性辯證" data-yt="https://youtu.be/e9-GKjtyf5M" href="#chapter-6"><span class="sb-circle">6</span><span class="sb-label">染染者</span></a>
 <a class="sb-vol" href="#chapter-7">卷二</a>
-<a class="sb-item" data-ch="7" data-juan="卷二" data-name="觀三相品第七" data-tip="破解時間與存在的邏輯迷宮 · 破有為三相" href="#chapter-7"><span class="sb-circle">7</span><span class="sb-label">三相</span></a>
-<a class="sb-item" data-ch="8" data-juan="卷二" data-name="觀作作者品第八" data-tip="因果實相 · 行動與主體的解構" href="#chapter-8"><span class="sb-circle">8</span><span class="sb-label">作作者</span></a>
-<a class="sb-item" data-ch="9" data-juan="卷二" data-name="觀本住品第九" data-tip="破除「見聞之前先有自我」的本住假設" href="#chapter-9"><span class="sb-circle">9</span><span class="sb-label">本住</span></a>
-<a class="sb-item" data-ch="10" data-juan="卷二" data-name="觀燃可燃品第十" data-tip="燃與可燃的相待 · 破我與五陰的一異執" href="#chapter-10"><span class="sb-circle">10</span><span class="sb-label">燃可燃</span></a>
-<a class="sb-item" data-ch="11" data-juan="卷二" data-name="觀本際品第十一" data-tip="破解生死虛妄的終極邏輯" href="#chapter-11"><span class="sb-circle">11</span><span class="sb-label">本際</span></a>
-<a class="sb-item" data-ch="12" data-juan="卷二" data-name="觀苦品第十二" data-tip="痛苦歸因的邏輯解構 · 破四種謬誤，重構緣起視角" href="#chapter-12"><span class="sb-circle">12</span><span class="sb-label">苦</span></a>
-<a class="sb-item" data-ch="13" data-juan="卷二" data-name="觀行品第十三" data-tip="空性的邏輯 · 諸行虛誑與無性的證成" href="#chapter-13"><span class="sb-circle">13</span><span class="sb-label">行</span></a>
-<a class="sb-item" data-ch="14" data-juan="卷二" data-name="觀合品第十四" data-tip="破見、所見、見者的和合之相" href="#chapter-14"><span class="sb-circle">14</span><span class="sb-label">合</span></a>
+<a class="sb-item" data-ch="7" data-juan="卷二" data-name="觀三相品第七" data-tip="破解時間與存在的邏輯迷宮 · 破有為三相" data-yt="https://youtu.be/C5HiG4zSW48" href="#chapter-7"><span class="sb-circle">7</span><span class="sb-label">三相</span></a>
+<a class="sb-item" data-ch="8" data-juan="卷二" data-name="觀作作者品第八" data-tip="因果實相 · 行動與主體的解構" data-yt="https://youtu.be/1NphDIjI2GQ" href="#chapter-8"><span class="sb-circle">8</span><span class="sb-label">作作者</span></a>
+<a class="sb-item" data-ch="9" data-juan="卷二" data-name="觀本住品第九" data-tip="破除「見聞之前先有自我」的本住假設" data-yt="https://youtu.be/vsx0c9EgyaM" href="#chapter-9"><span class="sb-circle">9</span><span class="sb-label">本住</span></a>
+<a class="sb-item" data-ch="10" data-juan="卷二" data-name="觀燃可燃品第十" data-tip="燃與可燃的相待 · 破我與五陰的一異執" data-yt="https://youtu.be/GcH_bVW4i5k" href="#chapter-10"><span class="sb-circle">10</span><span class="sb-label">燃可燃</span></a>
+<a class="sb-item" data-ch="11" data-juan="卷二" data-name="觀本際品第十一" data-tip="破解生死虛妄的終極邏輯" data-yt="https://youtu.be/_ERgOFeQwIg" href="#chapter-11"><span class="sb-circle">11</span><span class="sb-label">本際</span></a>
+<a class="sb-item" data-ch="12" data-juan="卷二" data-name="觀苦品第十二" data-tip="痛苦歸因的邏輯解構 · 破四種謬誤，重構緣起視角" data-yt="https://youtu.be/7T4CltTWn8Q" href="#chapter-12"><span class="sb-circle">12</span><span class="sb-label">苦</span></a>
+<a class="sb-item" data-ch="13" data-juan="卷二" data-name="觀行品第十三" data-tip="空性的邏輯 · 諸行虛誑與無性的證成" data-yt="https://youtu.be/GwOSfn5obXo" href="#chapter-13"><span class="sb-circle">13</span><span class="sb-label">行</span></a>
+<a class="sb-item" data-ch="14" data-juan="卷二" data-name="觀合品第十四" data-tip="破見、所見、見者的和合之相" data-yt="https://youtu.be/CDNdb43UxzY" href="#chapter-14"><span class="sb-circle">14</span><span class="sb-label">合</span></a>
 <a class="sb-vol" href="#chapter-15">卷三</a>
-<a class="sb-item" data-ch="15" data-juan="卷三" data-name="觀有無品第十五" data-tip="破解實相的辯證演算 · 正破自性與有無二見" href="#chapter-15"><span class="sb-circle">15</span><span class="sb-label">有無</span></a>
-<a class="sb-item" data-ch="16" data-juan="卷三" data-name="觀縛解品第十六" data-tip="破除輪迴與束縛的終極邏輯" href="#chapter-16"><span class="sb-circle">16</span><span class="sb-label">縛解</span></a>
-<a class="sb-item" data-ch="17" data-juan="卷三" data-name="觀業品第十七" data-tip="從「實有」到「如幻」的業力邏輯解構" href="#chapter-17"><span class="sb-circle">17</span><span class="sb-label">業</span></a>
-<a class="sb-item" data-ch="18" data-juan="卷三" data-name="觀法品第十八" data-tip="從「無我」契入諸法實相的究竟導讀" href="#chapter-18"><span class="sb-circle">18</span><span class="sb-label">法</span></a>
-<a class="sb-item" data-ch="19" data-juan="卷三" data-name="觀時品第十九" data-tip="破過去、現在、未來三時的相待自性" href="#chapter-19"><span class="sb-circle">19</span><span class="sb-label">時</span></a>
-<a class="sb-item" data-ch="20" data-juan="卷三" data-name="觀因果品第二十" data-tip="中觀邏輯與解脫心法 · 看透緣起如幻的實相" href="#chapter-20"><span class="sb-circle">20</span><span class="sb-label">因果</span></a>
-<a class="sb-item" data-ch="21" data-juan="卷三" data-name="觀成壞品第二十一" data-tip="成與壞的相待解構 · 生滅遷流中無實成壞" href="#chapter-21"><span class="sb-circle">21</span><span class="sb-label">成壞</span></a>
+<a class="sb-item" data-ch="15" data-juan="卷三" data-name="觀有無品第十五" data-tip="破解實相的辯證演算 · 正破自性與有無二見" data-yt="https://youtu.be/OP-yJy7il7g" href="#chapter-15"><span class="sb-circle">15</span><span class="sb-label">有無</span></a>
+<a class="sb-item" data-ch="16" data-juan="卷三" data-name="觀縛解品第十六" data-tip="破除輪迴與束縛的終極邏輯" data-yt="https://youtu.be/aDFpS6BtfXE" href="#chapter-16"><span class="sb-circle">16</span><span class="sb-label">縛解</span></a>
+<a class="sb-item" data-ch="17" data-juan="卷三" data-name="觀業品第十七" data-tip="從「實有」到「如幻」的業力邏輯解構" data-yt="https://youtu.be/CIb9TU7NNUc" href="#chapter-17"><span class="sb-circle">17</span><span class="sb-label">業</span></a>
+<a class="sb-item" data-ch="18" data-juan="卷三" data-name="觀法品第十八" data-tip="從「無我」契入諸法實相的究竟導讀" data-yt="https://youtu.be/qJ1XFL1y4aU" href="#chapter-18"><span class="sb-circle">18</span><span class="sb-label">法</span></a>
+<a class="sb-item" data-ch="19" data-juan="卷三" data-name="觀時品第十九" data-tip="破過去、現在、未來三時的相待自性" data-yt="https://youtu.be/F8ZJ_mwtxhg" href="#chapter-19"><span class="sb-circle">19</span><span class="sb-label">時</span></a>
+<a class="sb-item" data-ch="20" data-juan="卷三" data-name="觀因果品第二十" data-tip="中觀邏輯與解脫心法 · 看透緣起如幻的實相" data-yt="https://youtu.be/2qlkBq3Q_uc" href="#chapter-20"><span class="sb-circle">20</span><span class="sb-label">因果</span></a>
+<a class="sb-item" data-ch="21" data-juan="卷三" data-name="觀成壞品第二十一" data-tip="成與壞的相待解構 · 生滅遷流中無實成壞" data-yt="https://youtu.be/oWjo7Z3Sb5U" href="#chapter-21"><span class="sb-circle">21</span><span class="sb-label">成壞</span></a>
 <a class="sb-vol" href="#chapter-22">卷四</a>
-<a class="sb-item" data-ch="22" data-juan="卷四" data-name="觀如來品第二十二" data-tip="中觀智慧 · 破除執著的邏輯與心法解析" href="#chapter-22"><span class="sb-circle">22</span><span class="sb-label">如來</span></a>
-<a class="sb-item" data-ch="23" data-juan="卷四" data-name="觀顛倒品第二十三" data-tip="解構煩惱的終極邏輯 · 從情緒受害者到實相遊戲者" href="#chapter-23"><span class="sb-circle">23</span><span class="sb-label">顛倒</span></a>
-<a class="sb-item" data-ch="24" data-juan="卷四" data-name="觀四諦品第二十四" data-tip="空與有的終極辯證 · 二諦與緣起性空的樞紐" href="#chapter-24"><span class="sb-circle">24</span><span class="sb-label">四諦</span></a>
-<a class="sb-item" data-ch="25" data-juan="卷四" data-name="觀涅槃品第二十五" data-tip="解脫的邏輯與心法 · 涅槃與世間無有少分別" href="#chapter-25"><span class="sb-circle">25</span><span class="sb-label">涅槃</span></a>
-<a class="sb-item" data-ch="26" data-juan="卷四" data-name="觀十二因緣品第二十六" data-tip="流轉與還滅 · 十二支緣起的順逆觀照" href="#chapter-26"><span class="sb-circle">26</span><span class="sb-label">十二緣</span></a>
-<a class="sb-item" data-ch="27" data-juan="卷四" data-name="觀邪見品第二十七" data-tip="破除框架的中道智慧與實修心法" href="#chapter-27"><span class="sb-circle">27</span><span class="sb-label">邪見</span></a>
+<a class="sb-item" data-ch="22" data-juan="卷四" data-name="觀如來品第二十二" data-tip="中觀智慧 · 破除執著的邏輯與心法解析" data-yt="https://youtu.be/lOJEAUuKsGs" href="#chapter-22"><span class="sb-circle">22</span><span class="sb-label">如來</span></a>
+<a class="sb-item" data-ch="23" data-juan="卷四" data-name="觀顛倒品第二十三" data-tip="解構煩惱的終極邏輯 · 從情緒受害者到實相遊戲者" data-yt="https://youtu.be/uTC7xCLXeXI" href="#chapter-23"><span class="sb-circle">23</span><span class="sb-label">顛倒</span></a>
+<a class="sb-item" data-ch="24" data-juan="卷四" data-name="觀四諦品第二十四" data-tip="空與有的終極辯證 · 二諦與緣起性空的樞紐" data-yt="https://youtu.be/V_ZaWuibBR4" href="#chapter-24"><span class="sb-circle">24</span><span class="sb-label">四諦</span></a>
+<a class="sb-item" data-ch="25" data-juan="卷四" data-name="觀涅槃品第二十五" data-tip="解脫的邏輯與心法 · 涅槃與世間無有少分別" data-yt="https://youtu.be/aLgVfN2Ykz8" href="#chapter-25"><span class="sb-circle">25</span><span class="sb-label">涅槃</span></a>
+<a class="sb-item" data-ch="26" data-juan="卷四" data-name="觀十二因緣品第二十六" data-tip="流轉與還滅 · 十二支緣起的順逆觀照" data-yt="https://youtu.be/vEsn03ibNwQ" href="#chapter-26"><span class="sb-circle">26</span><span class="sb-label">十二緣</span></a>
+<a class="sb-item" data-ch="27" data-juan="卷四" data-name="觀邪見品第二十七" data-tip="破除框架的中道智慧與實修心法" data-yt="https://youtu.be/aLDNRUADCkM" href="#chapter-27"><span class="sb-circle">27</span><span class="sb-label">邪見</span></a>
 <div class="sb-related-head">相關論典</div>
 <a class="sb-related" href="https://weiwen0925.github.io/bailun/" rel="noopener" target="_blank" title="百論"><span class="sb-rel-circle">百</span><span class="sb-rel-label">百論</span></a>
 <a class="sb-related" href="https://weiwen0925.github.io/vigrahavyavartani/" rel="noopener" target="_blank" title="迴諍論"><span class="sb-rel-circle">迴</span><span class="sb-rel-label">迴諍論</span></a>
@@ -429,6 +453,11 @@ body{
 </nav>
 </aside>
 <button aria-label="回到頂部" id="backTop">↑</button>
+<a aria-label="本品 YouTube 影音導讀" href="#" id="chWatch" rel="noopener" target="_blank">
+<span class="yt-play">▶</span>
+<span>本品影音</span>
+<span class="yt-num" id="chWatchNum"></span>
+</a>
 <main class="main">
 <section class="site-hero">
 <div class="hero-inner">
@@ -14485,6 +14514,8 @@ var sbNowName=document.getElementById('sbNowName');
 var sbNowPct=document.getElementById('sbNowPct');
 var sbNowFill=document.getElementById('sbNowFill');
 var sbNowNum=document.getElementById('sbNowNum');
+var chWatch=document.getElementById('chWatch');
+var chWatchNum=document.getElementById('chWatchNum');
 function highlight(){
   var idx=0;
   for(var i=0;i<secs.length;i++){
@@ -14497,10 +14528,10 @@ function highlight(){
     if(r.top<70||r.bottom>window.innerHeight-30)
       act.scrollIntoView({block:'center'});
   }
-  /* 目前閱讀位置 + 該品閱讀進度 */
+  /* 目前閱讀位置 + 該品閱讀進度 + 浮動「本品影音」鈕 */
+  var beforeText = secs.length &&
+      secs[0].getBoundingClientRect().top > window.innerHeight*0.6;
   if(sbNow){
-    var beforeText = secs.length &&
-        secs[0].getBoundingClientRect().top > window.innerHeight*0.6;
     if(beforeText){
       sbNowLbl.textContent='目前位置';
       sbNowName.textContent='編者前言 · 總目錄';
@@ -14515,6 +14546,27 @@ function highlight(){
       sbNowFill.style.width=p+'%';
       sbNowNum.textContent=Math.round(p)+'%';
       sbNowPct.style.display='flex';
+    }
+  }
+  /* 浮動影音鈕：依 active 品自動切換 YouTube 連結 */
+  if(chWatch){
+    if(beforeText || !act){
+      chWatch.classList.remove('show');
+      chWatch.removeAttribute('href');
+    } else {
+      var yt = act.getAttribute('data-yt');
+      if(yt){
+        chWatch.setAttribute('href', yt);
+        chWatch.setAttribute('title',
+          '第' + act.getAttribute('data-ch') + '品 · ' +
+          act.getAttribute('data-name') + ' · 影音導讀');
+        if(chWatchNum){
+          chWatchNum.textContent = '第' + act.getAttribute('data-ch') + '品';
+        }
+        chWatch.classList.add('show');
+      } else {
+        chWatch.classList.remove('show');
+      }
     }
   }
 }
