@@ -123,10 +123,10 @@ body{
 
 /* ════ 浮動「本品影音」鈕 ════ */
 #chWatch{position:fixed;right:22px;bottom:82px;z-index:118;
-  display:none;align-items:center;gap:8px;
+  display:none;align-items:center;gap:11px;
   background:rgba(30,26,20,.93);border:1px solid var(--gold);
   color:var(--goldL);font-family:"Noto Sans TC",sans-serif;
-  font-size:14.2px;letter-spacing:2px;padding:8px 16px 8px 12px;
+  padding:9px 18px 9px 13px;
   border-radius:24px;text-decoration:none;cursor:pointer;
   box-shadow:0 4px 20px rgba(0,0,0,.42);backdrop-filter:blur(6px);
   -webkit-backdrop-filter:blur(6px);
@@ -136,13 +136,20 @@ body{
 #chWatch:hover{background:rgba(184,134,11,.4);color:#f7e7bd;
   box-shadow:0 6px 26px rgba(184,134,11,.45);}
 #chWatch .yt-play{display:inline-flex;align-items:center;justify-content:center;
-  width:18px;height:18px;border-radius:50%;background:#cc0000;color:#fff;
-  font-size:9.5px;line-height:1;flex:none;}
+  width:20px;height:20px;border-radius:50%;background:#cc0000;color:#fff;
+  font-size:10.5px;line-height:1;flex:none;}
+#chWatch .cw-text{display:flex;flex-direction:column;line-height:1.32;gap:1px;}
+#chWatch .cw-line1{font-size:14.2px;letter-spacing:2px;
+  display:flex;align-items:baseline;gap:7px;}
 #chWatch .yt-num{font-size:11.6px;letter-spacing:1px;
-  color:var(--gold);opacity:.78;margin-left:2px;}
+  color:var(--gold);opacity:.8;}
+#chWatch .cw-name{font-size:12.1px;letter-spacing:1.2px;
+  color:var(--gold);opacity:.78;font-weight:500;}
 @media(max-width:600px){
-  #chWatch{font-size:12.6px;padding:7px 13px;bottom:78px;}
+  #chWatch{padding:7px 14px;bottom:78px;gap:8px;}
+  #chWatch .cw-line1{font-size:12.6px;letter-spacing:1.5px;}
   #chWatch .yt-num{display:none;}
+  #chWatch .cw-name{font-size:11px;letter-spacing:.8px;}
 }
 
 /* ════ 閱讀進度膠囊 ════ */
@@ -455,8 +462,13 @@ body{
 <button aria-label="回到頂部" id="backTop">↑</button>
 <a aria-label="本品 YouTube 影音導讀" href="#" id="chWatch" rel="noopener" target="_blank">
 <span class="yt-play">▶</span>
+<span class="cw-text">
+<span class="cw-line1">
 <span>本品影音</span>
 <span class="yt-num" id="chWatchNum"></span>
+</span>
+<span class="cw-name" id="chWatchName"></span>
+</span>
 </a>
 <main class="main">
 <section class="site-hero">
@@ -14516,6 +14528,7 @@ var sbNowFill=document.getElementById('sbNowFill');
 var sbNowNum=document.getElementById('sbNowNum');
 var chWatch=document.getElementById('chWatch');
 var chWatchNum=document.getElementById('chWatchNum');
+var chWatchName=document.getElementById('chWatchName');
 function highlight(){
   var idx=0;
   for(var i=0;i<secs.length;i++){
@@ -14555,14 +14568,13 @@ function highlight(){
       chWatch.removeAttribute('href');
     } else {
       var yt = act.getAttribute('data-yt');
+      var nm = act.getAttribute('data-name');
+      var ch = act.getAttribute('data-ch');
       if(yt){
         chWatch.setAttribute('href', yt);
-        chWatch.setAttribute('title',
-          '第' + act.getAttribute('data-ch') + '品 · ' +
-          act.getAttribute('data-name') + ' · 影音導讀');
-        if(chWatchNum){
-          chWatchNum.textContent = '第' + act.getAttribute('data-ch') + '品';
-        }
+        chWatch.setAttribute('title','第'+ch+'品 · '+nm+' · 影音導讀');
+        if(chWatchNum)  chWatchNum.textContent  = '第'+ch+'品';
+        if(chWatchName) chWatchName.textContent = nm;
         chWatch.classList.add('show');
       } else {
         chWatch.classList.remove('show');
