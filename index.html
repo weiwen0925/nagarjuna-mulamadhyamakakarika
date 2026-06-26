@@ -138,17 +138,13 @@ body{
 #chWatch .yt-play{display:inline-flex;align-items:center;justify-content:center;
   width:20px;height:20px;border-radius:50%;background:#cc0000;color:#fff;
   font-size:10.5px;line-height:1;flex:none;}
-#chWatch .cw-text{display:flex;flex-direction:column;line-height:1.32;gap:1px;}
-#chWatch .cw-line1{font-size:14.2px;letter-spacing:2px;
-  display:flex;align-items:baseline;gap:7px;}
-#chWatch .yt-num{font-size:11.6px;letter-spacing:1px;
-  color:var(--gold);opacity:.8;}
+#chWatch .cw-text{display:flex;flex-direction:column;line-height:1.32;gap:2px;}
+#chWatch .cw-line1{font-size:14.2px;letter-spacing:2px;}
 #chWatch .cw-name{font-size:12.1px;letter-spacing:1.2px;
   color:var(--gold);opacity:.78;font-weight:500;}
 @media(max-width:600px){
   #chWatch{padding:7px 14px;bottom:78px;gap:8px;}
   #chWatch .cw-line1{font-size:12.6px;letter-spacing:1.5px;}
-  #chWatch .yt-num{display:none;}
   #chWatch .cw-name{font-size:11px;letter-spacing:.8px;}
 }
 
@@ -463,10 +459,7 @@ body{
 <a aria-label="本品 YouTube 影音導讀" href="#" id="chWatch" rel="noopener" target="_blank">
 <span class="yt-play">▶</span>
 <span class="cw-text">
-<span class="cw-line1">
-<span>本品影音</span>
-<span class="yt-num" id="chWatchNum"></span>
-</span>
+<span class="cw-line1">本品影音</span>
 <span class="cw-name" id="chWatchName"></span>
 </span>
 </a>
@@ -14527,7 +14520,6 @@ var sbNowPct=document.getElementById('sbNowPct');
 var sbNowFill=document.getElementById('sbNowFill');
 var sbNowNum=document.getElementById('sbNowNum');
 var chWatch=document.getElementById('chWatch');
-var chWatchNum=document.getElementById('chWatchNum');
 var chWatchName=document.getElementById('chWatchName');
 function highlight(){
   var idx=0;
@@ -14573,7 +14565,6 @@ function highlight(){
       if(yt){
         chWatch.setAttribute('href', yt);
         chWatch.setAttribute('title','第'+ch+'品 · '+nm+' · 影音導讀');
-        if(chWatchNum)  chWatchNum.textContent  = '第'+ch+'品';
         if(chWatchName) chWatchName.textContent = nm;
         chWatch.classList.add('show');
       } else {
