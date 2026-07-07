@@ -16434,5 +16434,48 @@ var c=0,iv=setInterval(function(){upd();if(++c>60)clearInterval(iv);},300);
 if(document.readyState!=='loading')upd();else document.addEventListener('DOMContentLoaded',upd);
 })();</script>
 <!--WY-ZL27:END-->
+<!--WY-ZLTOC:BEGIN-->
+<style id="wy-zltoc-css">
+.zltoc-actions{position:absolute;right:11px;bottom:9px;z-index:3;display:flex;align-items:center;gap:7px;}
+.zltoc-actions .toc-yt{position:static;right:auto;bottom:auto;}
+.zltoc-tbl{display:inline-flex;align-items:center;gap:5px;font-family:"Noto Sans TC",sans-serif;font-size:12.1px;letter-spacing:1.5px;color:#8b5e3c;background:rgba(139,94,60,.12);border:1px solid rgba(139,94,60,.5);border-radius:11px;padding:3px 10px;cursor:pointer;line-height:1.4;transition:background .2s,color .2s,box-shadow .2s;}
+.zltoc-tbl:hover{background:#8b5e3c;color:#fbf3e2;box-shadow:0 2px 8px rgba(139,94,60,.3);}
+.zltoc-ic{font-size:11px;line-height:1;}
+@media(max-width:480px){.zltoc-tbl,.zltoc-actions .toc-yt{font-size:11px;padding:3px 8px;}}
+</style>
+<script id="wy-zltoc-js">(function(){
+function nOf(card){
+  var a=card.querySelector('.toc-card-link');
+  if(a){var m=(a.getAttribute('href')||'').match(/#chapter-(\d+)/);if(m)return m[1];}
+  var num=card.querySelector('.toc-num');if(num){var t=(num.textContent||'').replace(/\D/g,'');if(t)return t;}
+  return null;
+}
+function build(){
+  var cards=document.querySelectorAll('.toc-card');
+  for(var i=0;i<cards.length;i++){
+    var card=cards[i];
+    if(card.querySelector('.zltoc-actions'))continue;
+    var n=nOf(card);if(!n)continue;
+    var wrap=document.createElement('div');wrap.className='zltoc-actions';
+    var btn=document.createElement('button');btn.type='button';btn.className='zltoc-tbl';
+    btn.setAttribute('data-tbl',n);btn.setAttribute('aria-label','第'+n+'品 概念總表');btn.title='本品概念綜合總表';
+    btn.innerHTML='<span class="zltoc-ic">\u25a6</span>總表';
+    wrap.appendChild(btn);
+    var yt=card.querySelector('.toc-yt');if(yt){wrap.appendChild(yt);}
+    card.appendChild(wrap);
+  }
+}
+document.addEventListener('click',function(e){
+  var b=(e.target&&e.target.closest)?e.target.closest('.zltoc-tbl'):null;if(!b)return;
+  e.preventDefault();e.stopPropagation();
+  var n=b.getAttribute('data-tbl');
+  var m=document.getElementById('zl'+n+'Modal');
+  if(m){m.classList.add('open');}else{location.hash='#chapter-'+n;}
+});
+build();
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);
+var c=0,iv=setInterval(function(){build();if(++c>20)clearInterval(iv);},250);
+})();</script>
+<!--WY-ZLTOC:END-->
 </body>
 </html>
