@@ -16472,9 +16472,15 @@ document.addEventListener('click',function(e){
   var m=document.getElementById('zl'+n+'Modal');
   if(m){m.classList.add('open');}else{location.hash='#chapter-'+n;}
 });
-build();
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);
+function deeplink(){
+  var q=(location.search.match(/[?&]tbl=(\d+)/)||[])[1]||(location.hash.match(/^#tbl-(\d+)$/)||[])[1];
+  if(!q)return;var md=document.getElementById('zl'+q+'Modal');if(md)md.classList.add('open');
+}
+function boot(){build();deeplink();}
+boot();
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);
 var c=0,iv=setInterval(function(){build();if(++c>20)clearInterval(iv);},250);
+setTimeout(deeplink,500);
 })();</script>
 <!--WY-ZLTOC:END-->
 </body>
