@@ -14822,8 +14822,15 @@ var BTN=document.getElementById('zl1Btn'),BOX=document.getElementById('zl1Box'),
 if(!CH.length||!BTN||!BOX||!MODAL)return;
 var TARGET=0;
 function curIdx(){var lim=window.innerHeight*0.35,idx=-1;for(var i=0;i<CH.length;i++){if(CH[i].getBoundingClientRect().top<lim)idx=i;}return idx;}
-var FSEL='#wyVideoBtn,#wyFab,#vid-floating,#floatingYt,.wy-vbtn,.wy-video-fab,.floating-yt',_fab,_ft=false;
-function fab(){if(_fab&&_fab.isConnected)return _fab;if(_ft)return _fab;_ft=true;_fab=document.querySelector(FSEL);return _fab;}
+var FSEL='#wyVideoBtn,#wyFab,#vid-floating,#floatingYt,#chWatch,.wy-vbtn,.wy-video-fab,.floating-yt',_fab,_ft=false;
+function fab(){
+  if(_fab&&_fab.isConnected)return _fab;
+  if(_ft)return _fab;_ft=true;
+  _fab=document.querySelector(FSEL);
+  if(_fab)return _fab;
+  var a=document.querySelectorAll('a,button,div');for(var i=0;i<a.length;i++){var e=a[i];if(e===BOX||BOX.contains(e)||e.id==='backTop')continue;var st;try{st=getComputedStyle(e);}catch(_){continue;}if(st.position!=='fixed')continue;var r=e.getBoundingClientRect();if(r.width<70||r.height<24||r.height>96)continue;if(r.right<window.innerWidth-60||r.bottom<window.innerHeight-220)continue;_fab=e;break;}
+  return _fab;
+}
 function place(){
   var base=null,eb=document.querySelector('.wy-ebox');
   if(eb){var r=eb.getBoundingClientRect();if(r.height>4)base=Math.round(window.innerHeight-r.top)+8;}
