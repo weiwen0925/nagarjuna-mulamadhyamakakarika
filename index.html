@@ -16633,7 +16633,7 @@ function render(){
       h+=row('','' +esc(label(k))+'・品'+pin.p,baseOf(k)+'#'+vols[k].a+'-'+pin.p,hlAll(pin.t,vm?[]:ts));}
     if(hits.length>10)h+='<div class="wys-more">…品名另有 '+(hits.length-10)+' 筆</div>';
   }
-  if(!vm&&!pure&&ts.length&&q.length>=2){
+  if(!vm&&!pure&&ts.length){
     var nds=IDX.nodes||{},perk={},tot=0;
     var nkeys=Object.keys(nds);
     nkeys.sort(function(a,b){return (a==='zl'?-1:b==='zl'?1:parseInt(a,10)-parseInt(b,10));});
@@ -16666,9 +16666,17 @@ function render(){
     }
     if(!ZI){h+='<div class="wys-head">總表內容 · 索引載入中…</div>';loadZb();}
     else{
-      var zh=[];
-      for(var z=0;z<ZI.length&&zh.length<80;z++){var it=ZI[z];
-        if(matchAll(it.title+' '+it.txt,ts))zh.push(it);}
+      var zperk={},ztot=0;
+      for(var z=0;z<ZI.length&&ztot<160;z++){var it=ZI[z];
+        if(matchAll(it.title+' '+it.txt,ts)){
+          var zk=String(it.k);
+          if((zperk[zk]=zperk[zk]||[]).length<6){zperk[zk].push(it);ztot++;}}}
+      var zh=[],zord=Object.keys(zperk),zrd=0,zadd=true;
+      zord.sort(function(a,b){return (a==='zl'?-1:b==='zl'?1:parseInt(a,10)-parseInt(b,10));});
+      while(zh.length<80&&zadd){zadd=false;
+        for(var zo=0;zo<zord.length;zo++){var zpa=zperk[zord[zo]];
+          if(zpa.length>zrd){zh.push(zpa[zrd]);zadd=true;}}
+        zrd++;}
       if(zh.length){
         h+='<div class="wys-head">總表內容 · '+zh.length+' 筆 <span class="wys-hint">達該品(右下有總表鈕)</span></div>';
         for(var r3=0;r3<Math.min(zh.length,12);r3++){var it2=zh[r3];
