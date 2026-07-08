@@ -16491,7 +16491,7 @@ setTimeout(deeplink,500);
   opacity:.92;transition:opacity .3s,transform .25s,box-shadow .25s;}
 #wysFab.show{display:flex;}
 #wysFab:hover{opacity:1;transform:translateY(-3px);box-shadow:0 10px 28px rgba(184,134,11,.45);}
-.wysf-ic{font-family:"Noto Serif TC",serif;font-size:19px;font-weight:700;color:#e3c085;line-height:1;}
+.wysf-ic{font-family:"Noto Serif TC",serif;font-size:20px;font-weight:700;color:#e8caa0;line-height:1;text-shadow:0 1px 0 rgba(0,0,0,.5),0 0 14px rgba(217,184,124,.28);}
 .wysf-ring{position:absolute;inset:4px;border-radius:50%;border:1px solid rgba(217,184,124,.22);pointer-events:none;}
 #wysModal{position:fixed;inset:0;z-index:9005;display:none;background:rgba(16,12,8,.78);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);
   overflow-y:auto;padding:9vh 16px 6vh;}
@@ -16532,8 +16532,8 @@ a.wys-row:hover{background:rgba(217,184,124,.1);}
 (function(){
 if(document.getElementById('wysFab'))return;
 var IDX=null,LOADING=false,ZI=null,ZLOAD=false;
-var fab=document.createElement('button');fab.id='wysFab';fab.type='button';fab.setAttribute('aria-label','全站搜尋');
-fab.innerHTML='<span class="wysf-ic">搜</span><span class="wysf-ring"></span>';
+var fab=document.createElement('button');fab.id='wysFab';fab.type='button';fab.setAttribute('aria-label','尋 · 全站搜尋');fab.title='尋 · 全站搜尋';
+fab.innerHTML='<span class="wysf-ic">尋</span><span class="wysf-ring"></span>';
 document.body.appendChild(fab);
 var sm=document.createElement('div');sm.id='wysModal';
 sm.innerHTML='<div class="wysm-card" role="dialog" aria-modal="true" aria-label="全站搜尋">'
@@ -16687,7 +16687,12 @@ function render(){
       }
     }
   }
-  sres.innerHTML=h||'<div class="wys-head">無結果 · 換個關鍵詞試試</div>';
+  if(!h){
+    if(!IDX.vols)h='<div class="wys-head">索引載入失敗 · 請檢查網路後重新整理頁面</div>';
+    else h='<div class="wys-head">查無結果 · 換個關鍵詞試試</div>'
+         +'<div class="wys-more">多詞以空格分隔時，須「同一品／同一項」同時含有全部詞；可改試單詞或同義詞</div>';
+  }
+  sres.innerHTML=h;
 }
 var timer=null;
 sin.addEventListener('input',function(){clearTimeout(timer);timer=setTimeout(render,220);});
