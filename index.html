@@ -16502,6 +16502,7 @@ setTimeout(deeplink,500);
 .wysm-orn{text-align:center;color:#8a7a62;font-size:13px;letter-spacing:8px;opacity:.75;}
 .wysm-title{text-align:center;font-family:"Noto Serif TC",serif;color:#e3c085;font-size:20px;font-weight:700;letter-spacing:8px;margin:8px 0 2px;text-indent:8px;}
 .wysm-sub{text-align:center;color:#9a8a72;font-family:"Noto Serif TC",serif;font-size:11.5px;letter-spacing:3px;margin-bottom:18px;}
+.wysm-if{width:100%;height:52px;border:none;display:block;background:transparent;}
 #wysInput{width:100%;background:transparent;border:none;outline:none;color:#f0e2c4;
   font-family:"Noto Serif TC",serif;font-size:18px;letter-spacing:2px;padding:10px 4px 12px;caret-color:#e3c085;
   border-bottom:1px solid rgba(217,184,124,.4);}
@@ -16538,11 +16539,18 @@ var sm=document.createElement('div');sm.id='wysModal';
 sm.innerHTML='<div class="wysm-card" role="dialog" aria-modal="true" aria-label="全站搜尋">'
  +'<div class="wysm-orn">❀</div><div class="wysm-title">全站搜尋</div>'
  +'<div class="wysm-sub">品名 · 原典節點 · 全景總表 · 系列導讀</div>'
- +'<input id="wysInput" type="search" autocomplete="off" placeholder="輸入關鍵詞，多詞可用空格分隔…"/>'
+ +'<iframe class="wysm-if" title="搜尋輸入" scrolling="no"></iframe>'
  +'<div id="wysResults"></div>'
  +'<div class="wysm-foot">Esc 關閉 · 結果皆於新分頁開啟</div></div>';
 document.body.appendChild(sm);
-var sin=sm.querySelector('#wysInput'),sres=sm.querySelector('#wysResults');
+var sres=sm.querySelector('#wysResults');
+/* 輸入框放同源 iframe:獨立 document,頁面防護層(全域鍵盤/選取攔截)完全不影響打字 */
+var ifr=sm.querySelector('.wysm-if'),idoc=ifr.contentDocument;
+idoc.open();
+idoc.write('<!DOCTYPE html><html><head><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet"><style>html,body{margin:0;padding:0;background:transparent;overflow:hidden;}input{width:100%;box-sizing:border-box;background:transparent;border:none;outline:none;color:#f0e2c4;font-family:"Noto Serif TC",serif;font-size:18px;letter-spacing:2px;padding:10px 4px 12px;caret-color:#e3c085;border-bottom:1px solid rgba(217,184,124,.4);}input:focus{border-bottom-color:#d9b87c;}input::placeholder{color:#7a6a52;letter-spacing:2px;font-size:15px;}input::-webkit-search-cancel-button{-webkit-appearance:none;}</style></head><body><input id="q" type="search" autocomplete="off" placeholder="輸入關鍵詞，多詞可用空格分隔…"/></body></html>');
+idoc.close();
+var sin=idoc.getElementById('q');
+
 function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML;}
 function baseOf(k){
   if(k==='zl')return 'https://weiwen0925.github.io/nagarjuna-mulamadhyamakakarika/';
@@ -16668,11 +16676,24 @@ var timer=null;
 sin.addEventListener('input',function(){clearTimeout(timer);timer=setTimeout(render,220);});
 sin.addEventListener('search',render);
 function smClose(){sm.classList.remove('show');document.documentElement.style.overflow='';}
+idoc.addEventListener('keydown',function(e){if(e.key==='Escape')smClose();});
 fab.addEventListener('click',function(){sm.classList.add('show');document.documentElement.style.overflow='hidden';
   loadIdx();setTimeout(function(){try{sin.focus();}catch(e){}},60);});
 sm.addEventListener('click',function(e){if(e.target===sm)smClose();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&sm.classList.contains('show'))smClose();});
-function fabShow(){fab.classList.toggle('show',window.scrollY>250);}
+function fabPlace(){ /* 避讓左側固定導覽欄(sb-nav 等):排到欄右側 12px */
+  var right=0,cands=document.querySelectorAll('[class*="sb"],[class*="side"],[class*="rail"],nav,aside');
+  for(var i=0;i<cands.length;i++){var el=cands[i];
+    if(el===fab||sm.contains(el))continue;
+    var st;try{st=getComputedStyle(el);}catch(_){continue;}
+    if(st.position!=='fixed'&&st.position!=='sticky')continue;
+    var r=el.getBoundingClientRect();
+    if(r.left<48&&r.width>0&&r.width<150&&r.height>200&&r.right>right)right=r.right;
+  }
+  fab.style.left=(right>0?Math.round(right)+12:24)+'px';
+}
+function fabShow(){fab.classList.toggle('show',window.scrollY>250);fabPlace();}
+setInterval(fabPlace,1500);
 window.addEventListener('scroll',fabShow,{passive:true});
 setTimeout(fabShow,600);setTimeout(fabShow,2000);
 })();
