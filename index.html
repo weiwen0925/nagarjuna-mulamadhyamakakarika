@@ -16634,11 +16634,20 @@ function render(){
     if(hits.length>10)h+='<div class="wys-more">…品名另有 '+(hits.length-10)+' 筆</div>';
   }
   if(!vm&&!pure&&ts.length&&q.length>=2){
-    var nds=IDX.nodes||{},nh=[];
-    Object.keys(nds).forEach(function(k){
-      if(nh.length>=60)return;
-      nds[k].forEach(function(nd){if(matchAll(nd.t,ts))nh.push([k,nd]);});
+    var nds=IDX.nodes||{},perk={},tot=0;
+    var nkeys=Object.keys(nds);
+    nkeys.sort(function(a,b){return (a==='zl'?-1:b==='zl'?1:parseInt(a,10)-parseInt(b,10));});
+    nkeys.forEach(function(k){
+      if(tot>=160)return;
+      for(var bi=0;bi<nds[k].length;bi++){var nd=nds[k][bi];
+        if(matchAll(nd.t,ts)){(perk[k]=perk[k]||[]).push(nd);tot++;
+          if(perk[k].length>=8)break;}}
     });
+    var nh=[],ord=Object.keys(perk),rd=0,added=true;
+    while(nh.length<60&&added){added=false;
+      for(var oi=0;oi<ord.length;oi++){var pa=perk[ord[oi]];
+        if(pa.length>rd){nh.push([ord[oi],pa[rd]]);added=true;}}
+      rd++;}
     if(nh.length){
       h+='<div class="wys-head">原典節點 · '+nh.length+' 筆 <span class="wys-hint">直達該節</span></div>';
       for(var r2=0;r2<Math.min(nh.length,10);r2++){var kk=nh[r2][0],nd=nh[r2][1];
