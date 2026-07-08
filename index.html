@@ -16553,10 +16553,10 @@ var sin=idoc.getElementById('q');
 
 function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML;}
 function baseOf(k){
-  if(k==='zl')return 'https://weiwen0925.github.io/nagarjuna-mulamadhyamakakarika/';
+  if(k==='zl')return 'https://weiwen0925.github.io/nagarjuna-mulamadhyamakakarika/'; /* ★新論擴充點★ 新論 base 在此補 */
   return 'https://weiwen0925.github.io/dazhidulun-'+k+'/';
 }
-function label(k){return k==='zl'?'中論':('卷 '+k);}
+function label(k){return k==='zl'?'中論':('卷 '+k);} /* ★新論擴充點★ 新論顯示名在此補 */
 function terms(q){return q.split(/[\s,，、・]+/).filter(function(x){return x.length>=1;}).slice(0,5);}
 function matchAll(txt,ts){var lo=txt.toLowerCase();
   for(var i=0;i<ts.length;i++){if(lo.indexOf(ts[i].toLowerCase())<0)return false;}return true;}
