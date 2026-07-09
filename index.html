@@ -16721,5 +16721,52 @@ setTimeout(fabShow,600);setTimeout(fabShow,2000);
 })();
 </script>
 <!--WY-SEARCH:END-->
+<!--WY-GOTO:BEGIN-->
+<script id="wy-goto-js">
+/* 跨 iframe 錨點導航：#chapter-品[-章[-節]] / #ch-N / #pin-N 深連結必達。
+   節點錨多在 L1 解碼後的 srcdoc iframe 內，原生跳轉找不到；本模組輪詢主文件＋
+   全部同源 iframe（250ms×120=30s），找到即捲動，佈局展開後再自動校正兩次。 */
+(function(){
+if(window.__wyGoto)return;window.__wyGoto=1;
+var userMoved=false;
+['wheel','touchstart','keydown'].forEach(function(ev){
+  window.addEventListener(ev,function(){userMoved=true;},{passive:true,once:true});});
+function findEl(id){
+  var el=document.getElementById(id);
+  if(el)return{el:el,f:null};
+  var ifr=document.querySelectorAll('iframe');
+  for(var i=0;i<ifr.length;i++){
+    try{var d=ifr[i].contentDocument;if(!d)continue;
+      var e2=d.getElementById(id);if(e2)return{el:e2,f:ifr[i]};}catch(e){}
+  }
+  return null;
+}
+function yOf(hit){
+  if(!hit.f)return window.scrollY+hit.el.getBoundingClientRect().top-64;
+  var fr=hit.f.getBoundingClientRect(),er=hit.el.getBoundingClientRect(),sy=0;
+  try{sy=hit.f.contentWindow.pageYOffset||0;}catch(e){}
+  return window.scrollY+fr.top+er.top+sy-64;
+}
+var tries=0,tm=null,target='';
+function attempt(){
+  var hit=findEl(target);
+  if(!hit){if(++tries<120){tm=setTimeout(attempt,250);}return;}
+  window.scrollTo({top:Math.max(0,yOf(hit)),behavior:tries<2?'smooth':'auto'});
+  [900,2200].forEach(function(d){setTimeout(function(){
+    if(userMoved)return;var h2=findEl(target);
+    if(h2)window.scrollTo({top:Math.max(0,yOf(h2)),behavior:'auto'});},d);});
+}
+function go(){
+  var m=/^#((?:chapter|ch|pin)-\d+(?:-\d+){0,2})$/.exec(location.hash||'');
+  if(!m)return;
+  target=m[1];tries=0;userMoved=false;clearTimeout(tm);
+  attempt();
+}
+window.addEventListener('hashchange',go);
+if(document.readyState==='complete')setTimeout(go,300);
+else window.addEventListener('load',function(){setTimeout(go,300);});
+})();
+</script>
+<!--WY-GOTO:END-->
 </body>
 </html>
