@@ -2074,6 +2074,67 @@ var c=0,iv=setInterval(function(){upd();if(++c>60)clearInterval(iv);},300);
 if(document.readyState!=='loading')upd();else document.addEventListener('DOMContentLoaded',upd);
 })();</script>
 <!--WY-ZL27:END-->
+<!--WY-ZL3:BEGIN-->
+<style id="wy-zl3-css">
+.zl3-fabbox{position:fixed;right:22px;bottom:78px;z-index:121;display:none;}
+.zl3-fabbox.show{display:block;}
+.zl3-btn{display:inline-flex;align-items:center;gap:9px;font-family:"Noto Sans TC",sans-serif;letter-spacing:.5px;color:#f7ecd2;background:linear-gradient(135deg,#4a4436,#25241c);padding:8px 15px;border-radius:22px;border:1px solid rgba(184,134,11,.6);box-shadow:0 4px 16px rgba(0,0,0,.3);cursor:pointer;opacity:.96;transition:opacity .3s,transform .2s,box-shadow .2s;}
+.zl3-btn:hover{opacity:1;transform:translateY(-2px);box-shadow:0 6px 22px rgba(184,134,11,.5);}
+.zl3-ic{font-size:15px;line-height:1;color:#ecc978;}
+.zl3-ls{display:flex;flex-direction:column;align-items:flex-start;line-height:1.22;}
+.zl3-l1{font-size:10.5px;font-weight:500;opacity:.82;white-space:nowrap;}
+.zl3-l2{font-size:13px;font-weight:700;color:#faf1d8;white-space:nowrap;}
+.zl3-modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(28,20,12,.58);padding:16px;}
+.zl3-modal.open{display:flex;}
+.zl3-card{position:relative;background:#fbf7ee;max-width:840px;width:100%;max-height:88vh;overflow:auto;border:1px solid #d8c8ac;border-radius:14px;padding:30px 24px 22px;box-shadow:0 18px 50px rgba(0,0,0,.4);}
+.zl3-card h3{margin:0 0 2px;font-family:"Noto Serif TC",serif;font-size:20px;color:#8b5e3c;}
+.zl3-card .sub{margin:0 0 14px;font-family:"Noto Sans TC",sans-serif;font-size:13px;color:#6b5b4b;}
+.zl3-close{position:absolute;top:12px;right:16px;width:34px;height:34px;border:none;border-radius:50%;background:#efe6d4;color:#8b5e3c;font-size:22px;line-height:1;cursor:pointer;z-index:2;}
+.zl3-close:hover{background:#e3d5b8;}
+.zl3-tbl{width:100%;border-collapse:collapse;font-family:"Noto Sans TC",sans-serif;font-size:13px;margin:.3em 0 1.2em;}
+.zl3-tbl caption{font-family:"Noto Serif TC",serif;font-weight:700;color:#8b5e3c;font-size:14px;text-align:left;margin:.6em 0 .35em;line-height:1.5;}
+.zl3-tbl th,.zl3-tbl td{border:1px solid #d8c8ac;padding:.45em .6em;text-align:left;vertical-align:top;line-height:1.6;}
+.zl3-tbl thead th{background:#8b5e3c;color:#f7ecd2;font-weight:700;}
+.zl3-tbl td:first-child{white-space:nowrap;color:#8b5e3c;font-weight:700;background:#f0e8d8;}
+.zl3-tbl tbody tr:nth-child(even) td{background:#f6efe0;}
+.zl3-tbl b{color:#8b2500;}
+.zl3-note{font-size:12px;color:#5a4e3a;line-height:1.9;background:#f6efe0;border-left:3px solid #c4956a;border-radius:0 6px 6px 0;padding:10px 13px;margin:4px 0 0;}
+.zl3-note b{color:#8b2500;}
+@media(max-width:900px){.zl3-fabbox{right:14px;}.zl3-tbl{font-size:11.5px;}.zl3-card{padding:26px 14px 16px;}}
+</style>
+<div class="zl3-fabbox" id="zl3Box"><button class="zl3-btn" id="zl3Btn" type="button" aria-label="開啟《中論》第三品・觀六情品 · 全景總表"><span class="zl3-ic">▦</span><span class="zl3-ls"><span class="zl3-l1">本品 · 觀六情品</span><span class="zl3-l2">全景總表 · 破六根實有</span></span></button></div><div class="zl3-modal" id="zl3Modal" role="dialog" aria-modal="true" aria-label="《中論》第三品・觀六情品 · 全景總表"><div class="zl3-card"><button class="zl3-close" id="zl3Close" type="button" aria-label="關閉">×</button><h3>《中論》第三品・觀六情品 · 全景總表</h3><p class="sub">龍樹造・青目釋・鳩摩羅什譯｜眼不自見・破燈火喻・見＝緣起事件・見者不可得</p><table class="zl3-tbl"><caption>一、八偈解構階梯（全品由下而上的破斥地圖）</caption><thead><tr><th>偈</th><th>角色</th><th>內容</th></tr></thead><tbody><tr><td>第一偈</td><td>立論</td><td>對方立「六情（六根）對六塵」的感官實有模型</td></tr><tr><td>第二偈</td><td>破斥</td><td><b>眼不自見</b>——若見是眼固有本能，應能見一切（含自己）；但眼決定性地不能見自體 → 見非眼固有</td></tr><tr><td>第三偈</td><td>破斥</td><td>以<b>三時</b>邏輯破「火喻」（承〈去來品〉）</td></tr><tr><td>第四偈</td><td>重定義</td><td><b>見＝眼＋色＋識</b> 三緣碰撞的「事件」，非眼的「屬性」</td></tr><tr><td>第五偈</td><td>破見者</td><td>見既破，見者亦破</td></tr><tr><td>第六偈</td><td>破見者</td><td>離見／不離見，<b>見者不可得</b></td></tr><tr><td>第七偈</td><td>斷輪迴</td><td>見、可見無 → 識・觸・受・愛乃至四取皆無</td></tr><tr><td>第八偈</td><td>總結</td><td>耳鼻舌身意義同於上——一通百通</td></tr></tbody></table><table class="zl3-tbl"><caption>二、核心三破</caption><thead><tr><th>破斥</th><th>論證</th></tr></thead><tbody><tr><td>眼不自見</td><td>若「見」是眼的固有本能（自性），應能見一切；但眼無法見自體——如刀不自割、指不自觸，證「自性的見」不存在</td></tr><tr><td>破燈火譬喻</td><td>對方以「火能燒他卻不自燒」救援；龍樹從<b>物理邏輯</b>與<b>時間邏輯（三時）</b>雙路拆解</td></tr><tr><td>見者不可得</td><td>「看」既只是緣起事件，幕後那個接收影像的「操作員（我／神我）」也一併垮塌</td></tr></tbody></table><table class="zl3-tbl"><caption>三、「見」的重定義 ── 屬性 vs 事件</caption><thead><tr><th>凡夫預設</th><th>中觀重定義</th></tr></thead><tbody><tr><td>見＝眼的固有能力（屬性 Property）</td><td>見＝眼＋色＋識 三緣碰撞的「事件（Event）」</td></tr><tr><td>有一個「見者」坐在幕後看</td><td>無獨立操作員；如火花不住打火石、也不住鋼片，只在相擊剎那發生</td></tr><tr><td>六根各有實體功能</td><td>眼如是，耳鼻舌身意亦如是（一通百通）</td></tr></tbody></table><p class="zl3-note"><b>一脈相承</b>：本品把〈觀去來品〉破「運動」的三時邏輯，移來破「看見」。<br><b>核心轉向</b>：「看」不是眼睛先天攜帶、隨時待命的<b>能力</b>，而是條件湊齊時才迸出的<b>事件</b>——火花不藏在石中、也不藏在鋼中，只在眾緣和合處緣起。<br><b>斷輪迴</b>：見·可見既空，識·觸·受·愛·取的十二因緣鏈即從根截斷；「無我」不是另證，而是「見者不可得」的自然結論。深入白話解說見中論閱讀本各節。</p></div></div>
+<script id="wy-zl3-js">(function(){
+var CH=document.querySelectorAll('section.chapter');
+var BTN=document.getElementById('zl3Btn'),BOX=document.getElementById('zl3Box'),MODAL=document.getElementById('zl3Modal');
+if(!CH.length||!BTN||!BOX||!MODAL)return;
+var TARGET=2;
+function curIdx(){var lim=window.innerHeight*0.35,idx=-1;for(var i=0;i<CH.length;i++){if(CH[i].getBoundingClientRect().top<lim)idx=i;}return idx;}
+var FSEL='#wyVideoBtn,#wyFab,#vid-floating,#floatingYt,#chWatch,.wy-vbtn,.wy-video-fab,.floating-yt',_fab,_ft=false;
+function fab(){
+  if(_fab&&_fab.isConnected)return _fab;
+  if(_ft)return _fab;_ft=true;
+  _fab=document.querySelector(FSEL);
+  if(_fab)return _fab;
+  var a=document.querySelectorAll('a,button,div');for(var i=0;i<a.length;i++){var e=a[i];if(e===BOX||BOX.contains(e)||e.id==='backTop')continue;var st;try{st=getComputedStyle(e);}catch(_){continue;}if(st.position!=='fixed')continue;var r=e.getBoundingClientRect();if(r.width<70||r.height<24||r.height>96)continue;if(r.right<window.innerWidth-60||r.bottom<window.innerHeight-220)continue;_fab=e;break;}
+  return _fab;
+}
+function place(){
+  var base=null,eb=document.querySelector('.wy-ebox');
+  if(eb){var r=eb.getBoundingClientRect();if(r.height>4)base=Math.round(window.innerHeight-r.top)+8;}
+  if(base===null){var fEl=fab();if(fEl){var fr=fEl.getBoundingClientRect(),st=getComputedStyle(fEl);if(fr.height>0&&st.display!=='none'&&st.visibility!=='hidden')base=Math.round(window.innerHeight-fr.top)+10;}}
+  if(base===null)base=78;
+  BOX.style.bottom=base+'px';
+}
+function upd(){place();BOX.classList.toggle('show',curIdx()===TARGET);}
+var tk=false;function onS(){if(!tk){tk=true;requestAnimationFrame(function(){tk=false;upd();});}}
+window.addEventListener('scroll',onS,{passive:true});window.addEventListener('resize',onS);
+BTN.addEventListener('click',function(){MODAL.classList.add('open');});
+MODAL.addEventListener('click',function(e){if(e.target===MODAL||e.target.id==='zl3Close')MODAL.classList.remove('open');});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')MODAL.classList.remove('open');});
+var c=0,iv=setInterval(function(){upd();if(++c>60)clearInterval(iv);},300);
+if(document.readyState!=='loading')upd();else document.addEventListener('DOMContentLoaded',upd);
+})();</script>
+<!--WY-ZL3:END-->
 </body></html>"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>八不既立，緣起性空之理已舉其綱。然而世人最難放下的，是親眼可見的「運動」——去、來、行走宛然在目，豈非實有？下一〈觀去來品〉即以此最直觀的現象為標的，示範如何以中觀正理解構「去」的自性。</p></div><a class="next-link" href="#chapter-2">前往 第二品 · 觀去來品第二 →</a></div></section>
 <section class="chapter" id="chapter-2"><div class="ch-head"><div class="ch-num">卷一　·　第二品</div><div class="ch-name">觀去來品第二</div><div class="ch-sub">金剛慧劍 · 解構時間、運動與去者的自性</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>承前品確立緣起性空之綱領，本品轉向最具說服力的「實有」直觀——運動。龍樹以「已去無有去，未去亦無去，離已去未去，去時亦無去」三時推檢，破除去法、去者、去時的自性，顯示連最鮮明的位移現象都了無實體。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="<!DOCTYPE html><html lang=zh-Hant><head><meta charset=UTF-8><meta name=viewport content='width=device-width,initial-scale=1'><link rel=stylesheet href='https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;display=swap'><style>
 :root{
