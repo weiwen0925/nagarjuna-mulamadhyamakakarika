@@ -16524,6 +16524,9 @@ a.wys-row:hover{background:rgba(217,184,124,.1);}
 .wys-t b{color:#ffe7b3;font-weight:700;}
 .wys-tt{color:#c9a96e;font-size:11px;letter-spacing:1px;}
 .wys-more{padding:8px 14px;color:#8a7a62;font-size:11.5px;font-family:"Noto Serif TC",serif;}
+.wys-xmore{cursor:pointer;color:#c9a96e;border:1px solid rgba(217,184,124,.28);border-radius:12px;
+  margin:6px 12px 10px;padding:7px 14px;text-align:center;transition:background .2s,color .2s;}
+.wys-xmore:hover{background:rgba(217,184,124,.12);color:#ffe7b3;}
 .wysm-foot{text-align:center;color:#7a6a52;font-family:"Noto Serif TC",serif;font-size:11px;letter-spacing:2px;
   padding-top:12px;margin-top:8px;border-top:1px dashed rgba(217,184,124,.18);}
 @media (max-width:700px){#wysFab{left:14px;bottom:18px;width:46px;height:46px;}.wysf-ic{font-size:16px;}.wysm-card{padding:20px 14px 14px;}}
@@ -16609,9 +16612,19 @@ function row(cls,tag,href,inner){
   return '<a class="wys-row" href="'+href+'" target="_blank" rel="noopener"><span class="wys-tag '+cls+'">'+tag+'</span>'
     +'<span class="wys-t">'+inner+'</span></a>';
 }
+var EXP={q:'',p:0,n:0,e:0,z:0};   /* 各層「顯示全部」展開狀態，換詞即重設 */
+var XCAP=500;                       /* 展開後單層顯示上限，防爆量 */
+function xmore(layer,total,shown){
+  if(total<=shown)return '';
+  return '<div class="wys-more wys-xmore" data-xmore="'+layer+'">▾ 顯示全部 '+total+' 筆</div>';
+}
+function xnote(total,shown){
+  return (total>shown)?'<div class="wys-more">已列前 '+shown+' 筆 · 加詞可縮小範圍</div>':'';
+}
 function render(){
   var q=(sin.value||'').trim();
   if(!q){sres.innerHTML='';return;}
+  if(EXP.q!==q){EXP.q=q;EXP.p=0;EXP.n=0;EXP.e=0;EXP.z=0;}
   var ts=terms(q),h='';
   var pure=/^[\d\s]+$/.test(q);
   if(!IDX){sres.innerHTML='<div class="wys-head">索引載入中…</div>';loadIdx();return;}
@@ -16623,67 +16636,68 @@ function render(){
     vols[k0].pins.forEach(function(pin){hits.push([k0,pin]);});
   }else if(ts.length&&!pure){
     Object.keys(vols).forEach(function(k){
-      if(hits.length>=120)return;
       vols[k].pins.forEach(function(pin){if(matchAll(pin.t,ts))hits.push([k,pin]);});
     });
   }
   if(hits.length){
+    var M1=EXP.p?XCAP:10,S1=Math.min(hits.length,M1);
     h+='<div class="wys-head">品名 · '+hits.length+' 筆 <span class="wys-hint">直達該品</span></div>';
-    for(var r=0;r<Math.min(hits.length,10);r++){var k=hits[r][0],pin=hits[r][1];
+    for(var r=0;r<S1;r++){var k=hits[r][0],pin=hits[r][1];
       h+=row('','' +esc(label(k))+'・品'+pin.p,baseOf(k)+'#'+vols[k].a+'-'+pin.p,hlAll(pin.t,vm?[]:ts));}
-    if(hits.length>10)h+='<div class="wys-more">…品名另有 '+(hits.length-10)+' 筆</div>';
+    h+=EXP.p?xnote(hits.length,S1):xmore('p',hits.length,S1);
   }
   if(!vm&&!pure&&ts.length){
-    var nds=IDX.nodes||{},perk={},tot=0;
+    var nds=IDX.nodes||{},perk={},ntot=0;
     var nkeys=Object.keys(nds);
     nkeys.sort(function(a,b){return (a==='zl'?-1:b==='zl'?1:parseInt(a,10)-parseInt(b,10));});
     nkeys.forEach(function(k){
-      if(tot>=160)return;
       for(var bi=0;bi<nds[k].length;bi++){var nd=nds[k][bi];
-        if(matchAll(nd.t,ts)){(perk[k]=perk[k]||[]).push(nd);tot++;
-          if(perk[k].length>=8)break;}}
+        if(matchAll(nd.t,ts)){(perk[k]=perk[k]||[]).push(nd);ntot++;}}
     });
-    var nh=[],ord=Object.keys(perk),rd=0,added=true;
-    while(nh.length<60&&added){added=false;
+    var nh=[],ord=Object.keys(perk),rd=0,added=true,DN=EXP.n?XCAP:60;
+    while(nh.length<DN&&added){added=false;
       for(var oi=0;oi<ord.length;oi++){var pa=perk[ord[oi]];
-        if(pa.length>rd){nh.push([ord[oi],pa[rd]]);added=true;}}
+        if(pa.length>rd&&nh.length<DN){nh.push([ord[oi],pa[rd]]);added=true;}}
       rd++;}
     if(nh.length){
-      h+='<div class="wys-head">原典節點 · '+nh.length+' 筆 <span class="wys-hint">直達該節</span></div>';
-      for(var r2=0;r2<Math.min(nh.length,10);r2++){var kk=nh[r2][0],nd=nh[r2][1];
+      var M2=EXP.n?XCAP:10,S2=Math.min(nh.length,M2);
+      h+='<div class="wys-head">原典節點 · '+ntot+' 筆 <span class="wys-hint">直達該節</span></div>';
+      for(var r2=0;r2<S2;r2++){var kk=nh[r2][0],nd=nh[r2][1];
         h+=row('wys-tag3',esc(label(kk)),baseOf(kk)+'#'+esc(nd.a),hlAll(nd.t,ts));}
-      if(nh.length>10)h+='<div class="wys-more">…節點另有 '+(nh.length-10)+' 筆</div>';
+      h+=EXP.n?xnote(ntot,S2):xmore('n',ntot,S2);
     }
     var es2=IDX.essays||[],eh=[];
-    for(var c2=0;c2<es2.length&&eh.length<40;c2++){var it3=es2[c2];
+    for(var c2=0;c2<es2.length;c2++){var it3=es2[c2];
       if(matchAll(it3.t+' '+it3.x,ts))eh.push(it3);}
     if(eh.length){
+      var M4=EXP.e?XCAP:8,S4=Math.min(eh.length,M4);
       h+='<div class="wys-head">系列導讀 · '+eh.length+' 篇 <span class="wys-hint">開啟文章</span></div>';
-      for(var r4=0;r4<Math.min(eh.length,8);r4++){var it4=eh[r4];
+      for(var r4=0;r4<S4;r4++){var it4=eh[r4];
         h+=row('wys-tag4','導讀 '+it4.n,'https://weiwen0925.github.io/medium-import-'+it4.n+'.html',
           '<span class="wys-tt">'+esc(it4.t.slice(0,30))+'</span><br>'+hlAll(snippet(it4.x,ts),ts));}
-      if(eh.length>8)h+='<div class="wys-more">…導讀另有 '+(eh.length-8)+' 篇</div>';
+      h+=EXP.e?xnote(eh.length,S4):xmore('e',eh.length,S4);
     }
     if(!ZI){h+='<div class="wys-head">總表內容 · 索引載入中…</div>';loadZb();}
     else{
       var zperk={},ztot=0;
-      for(var z=0;z<ZI.length&&ztot<160;z++){var it=ZI[z];
+      for(var z=0;z<ZI.length;z++){var it=ZI[z];
         if(matchAll(it.title+' '+it.txt,ts)){
           var zk=String(it.k);
-          if((zperk[zk]=zperk[zk]||[]).length<6){zperk[zk].push(it);ztot++;}}}
-      var zh=[],zord=Object.keys(zperk),zrd=0,zadd=true;
+          (zperk[zk]=zperk[zk]||[]).push(it);ztot++;}}
+      var zh=[],zord=Object.keys(zperk),zrd=0,zadd=true,DZ=EXP.z?XCAP:80;
       zord.sort(function(a,b){return (a==='zl'?-1:b==='zl'?1:parseInt(a,10)-parseInt(b,10));});
-      while(zh.length<80&&zadd){zadd=false;
+      while(zh.length<DZ&&zadd){zadd=false;
         for(var zo=0;zo<zord.length;zo++){var zpa=zperk[zord[zo]];
-          if(zpa.length>zrd){zh.push(zpa[zrd]);zadd=true;}}
+          if(zpa.length>zrd&&zh.length<DZ){zh.push(zpa[zrd]);zadd=true;}}
         zrd++;}
       if(zh.length){
-        h+='<div class="wys-head">總表內容 · '+zh.length+' 筆 <span class="wys-hint">達該品(右下有總表鈕)</span></div>';
-        for(var r3=0;r3<Math.min(zh.length,12);r3++){var it2=zh[r3];
+        var M3=EXP.z?XCAP:12,S3=Math.min(zh.length,M3);
+        h+='<div class="wys-head">總表內容 · '+ztot+' 筆 <span class="wys-hint">達該品(右下有總表鈕)</span></div>';
+        for(var r3=0;r3<S3;r3++){var it2=zh[r3];
           var vk=vols[it2.k];
           h+=row('wys-tag2',esc(label(it2.k))+'・品'+it2.p,baseOf(it2.k)+'#'+((vk&&vk.a)||'chapter')+'-'+it2.p,
             '<span class="wys-tt">'+esc(it2.title.slice(0,26))+'</span><br>'+hlAll(snippet(it2.txt,ts),ts));}
-        if(zh.length>12)h+='<div class="wys-more">…總表另有 '+(zh.length-12)+' 筆</div>';
+        h+=EXP.z?xnote(ztot,S3):xmore('z',ztot,S3);
       }
     }
   }
@@ -16697,6 +16711,10 @@ function render(){
 var timer=null;
 sin.addEventListener('input',function(){clearTimeout(timer);timer=setTimeout(render,220);});
 sin.addEventListener('search',render);
+sres.addEventListener('click',function(e){
+  var xm=e.target.closest&&e.target.closest('[data-xmore]');
+  if(xm){EXP[xm.getAttribute('data-xmore')]=1;render();}
+});
 function smClose(){sm.classList.remove('show');document.documentElement.style.overflow='';}
 idoc.addEventListener('keydown',function(e){if(e.key==='Escape')smClose();});
 fab.addEventListener('click',function(){sm.classList.add('show');document.documentElement.style.overflow='hidden';
