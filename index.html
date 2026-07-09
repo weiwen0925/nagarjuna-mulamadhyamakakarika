@@ -2196,6 +2196,67 @@ var c=0,iv=setInterval(function(){upd();if(++c>60)clearInterval(iv);},300);
 if(document.readyState!=='loading')upd();else document.addEventListener('DOMContentLoaded',upd);
 })();</script>
 <!--WY-ZL4:END-->
+<!--WY-ZL5:BEGIN-->
+<style id="wy-zl5-css">
+.zl5-fabbox{position:fixed;right:22px;bottom:78px;z-index:121;display:none;}
+.zl5-fabbox.show{display:block;}
+.zl5-btn{display:inline-flex;align-items:center;gap:9px;font-family:"Noto Sans TC",sans-serif;letter-spacing:.5px;color:#f7ecd2;background:linear-gradient(135deg,#46463a,#23241c);padding:8px 15px;border-radius:22px;border:1px solid rgba(184,134,11,.6);box-shadow:0 4px 16px rgba(0,0,0,.3);cursor:pointer;opacity:.96;transition:opacity .3s,transform .2s,box-shadow .2s;}
+.zl5-btn:hover{opacity:1;transform:translateY(-2px);box-shadow:0 6px 22px rgba(184,134,11,.5);}
+.zl5-ic{font-size:15px;line-height:1;color:#ecc978;}
+.zl5-ls{display:flex;flex-direction:column;align-items:flex-start;line-height:1.22;}
+.zl5-l1{font-size:10.5px;font-weight:500;opacity:.82;white-space:nowrap;}
+.zl5-l2{font-size:13px;font-weight:700;color:#faf1d8;white-space:nowrap;}
+.zl5-modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(28,20,12,.58);padding:16px;}
+.zl5-modal.open{display:flex;}
+.zl5-card{position:relative;background:#fbf7ee;max-width:840px;width:100%;max-height:88vh;overflow:auto;border:1px solid #d8c8ac;border-radius:14px;padding:30px 24px 22px;box-shadow:0 18px 50px rgba(0,0,0,.4);}
+.zl5-card h3{margin:0 0 2px;font-family:"Noto Serif TC",serif;font-size:20px;color:#8b5e3c;}
+.zl5-card .sub{margin:0 0 14px;font-family:"Noto Sans TC",sans-serif;font-size:13px;color:#6b5b4b;}
+.zl5-close{position:absolute;top:12px;right:16px;width:34px;height:34px;border:none;border-radius:50%;background:#efe6d4;color:#8b5e3c;font-size:22px;line-height:1;cursor:pointer;z-index:2;}
+.zl5-close:hover{background:#e3d5b8;}
+.zl5-tbl{width:100%;border-collapse:collapse;font-family:"Noto Sans TC",sans-serif;font-size:13px;margin:.3em 0 1.2em;}
+.zl5-tbl caption{font-family:"Noto Serif TC",serif;font-weight:700;color:#8b5e3c;font-size:14px;text-align:left;margin:.6em 0 .35em;line-height:1.5;}
+.zl5-tbl th,.zl5-tbl td{border:1px solid #d8c8ac;padding:.45em .6em;text-align:left;vertical-align:top;line-height:1.6;}
+.zl5-tbl thead th{background:#8b5e3c;color:#f7ecd2;font-weight:700;}
+.zl5-tbl td:first-child{white-space:nowrap;color:#8b5e3c;font-weight:700;background:#f0e8d8;}
+.zl5-tbl tbody tr:nth-child(even) td{background:#f6efe0;}
+.zl5-tbl b{color:#8b2500;}
+.zl5-note{font-size:12px;color:#5a4e3a;line-height:1.9;background:#f6efe0;border-left:3px solid #c4956a;border-radius:0 6px 6px 0;padding:10px 13px;margin:4px 0 0;}
+.zl5-note b{color:#8b2500;}
+@media(max-width:900px){.zl5-fabbox{right:14px;}.zl5-tbl{font-size:11.5px;}.zl5-card{padding:26px 14px 16px;}}
+</style>
+<div class="zl5-fabbox" id="zl5Box"><button class="zl5-btn" id="zl5Btn" type="button" aria-label="開啟《中論》第五品・觀六種品 · 全景總表"><span class="zl5-ic">▦</span><span class="zl5-ls"><span class="zl5-l1">本品 · 觀六種品</span><span class="zl5-l2">全景總表 · 破虛空相</span></span></button></div><div class="zl5-modal" id="zl5Modal" role="dialog" aria-modal="true" aria-label="《中論》第五品・觀六種品 · 全景總表"><div class="zl5-card"><button class="zl5-close" id="zl5Close" type="button" aria-label="關閉">×</button><h3>《中論》第五品・觀六種品 · 全景總表</h3><p class="sub">龍樹造・青目釋・鳩摩羅什譯｜相與可相相待・破虛空・不熱的火・非有非無</p><table class="zl5-tbl"><caption>一、八偈破虛空（相與可相）</caption><thead><tr><th>偈</th><th>內容</th></tr></thead><tbody><tr><td>第一偈</td><td><b>空相未有時</b>——「相」尚未有，則無「可相」（無空可安相）</td></tr><tr><td>第二偈</td><td>無相之法不可得——如「<b>不熱的火</b>」，無相則非物</td></tr><tr><td>第三偈</td><td>有相無相中，「相」皆無所住（不住有相處、也不住無相處）</td></tr><tr><td>第四·五偈</td><td>相法無有故，可相亦無——<b>相 ⇄ 可相</b> 互為因果，俱無</td></tr><tr><td>第六偈</td><td>若使無有有——「有」「無」雙破（雙重否定）</td></tr><tr><td>第七偈</td><td>是故知虛空，<b>非有非無、非相非可相</b></td></tr><tr><td>第八偈</td><td>淺智取相言有言無；智者<b>滅見安隱</b></td></tr></tbody></table><table class="zl5-tbl"><caption>二、核心 ── 相與可相相待</caption><thead><tr><th>凡夫預設</th><th>中觀破斥</th></tr></thead><tbody><tr><td>先有實體，才有屬性（衣架子思維）</td><td>「相」與「可相」互為因果、相依而立——沒有一個先在的實體</td></tr><tr><td>虛空是「無相」的實體</td><td>無相則不可捉（不熱的火）；相無所住（有相無相俱不容）</td></tr><tr><td>有／無 二分</td><td>有不自有、無不自有 → 非有非無</td></tr></tbody></table><table class="zl5-tbl"><caption>三、兩種看世界 · 滅見安隱</caption><thead><tr><th>淺智</th><th>智者</th></tr></thead><tbody><tr><td>淺智：取相言「有」、取相言「斷（無）」</td><td>智者：<b>滅一切見，安隱</b></td></tr><tr><td>執實體、隨境起伏</td><td>Flow with change——「空」不是什麼都沒有，破是解脫的開端</td></tr></tbody></table><p class="zl5-note"><b>為何先破虛空</b>：地水火風是眾緣和合、較易見空；虛空看似最「無相的實體」，破掉它，餘五種（地水火風識）自破。<br><b>核心</b>：世界不是「先有東西、再有特徵」；「相（特徵）」與「可相（被特徵者）」是<b>相待而立</b>的一組，抽掉任一方，另一方也不成立。<br><b>應用</b>：拆「我是失敗者」「我在生氣」「他是壞人」「失去依止處」——都只是相與可相的相待假名，鬆開就自由。深入白話解說見中論閱讀本各節。</p></div></div>
+<script id="wy-zl5-js">(function(){
+var CH=document.querySelectorAll('section.chapter');
+var BTN=document.getElementById('zl5Btn'),BOX=document.getElementById('zl5Box'),MODAL=document.getElementById('zl5Modal');
+if(!CH.length||!BTN||!BOX||!MODAL)return;
+var TARGET=4;
+function curIdx(){var lim=window.innerHeight*0.35,idx=-1;for(var i=0;i<CH.length;i++){if(CH[i].getBoundingClientRect().top<lim)idx=i;}return idx;}
+var FSEL='#wyVideoBtn,#wyFab,#vid-floating,#floatingYt,#chWatch,.wy-vbtn,.wy-video-fab,.floating-yt',_fab,_ft=false;
+function fab(){
+  if(_fab&&_fab.isConnected)return _fab;
+  if(_ft)return _fab;_ft=true;
+  _fab=document.querySelector(FSEL);
+  if(_fab)return _fab;
+  var a=document.querySelectorAll('a,button,div');for(var i=0;i<a.length;i++){var e=a[i];if(e===BOX||BOX.contains(e)||e.id==='backTop')continue;var st;try{st=getComputedStyle(e);}catch(_){continue;}if(st.position!=='fixed')continue;var r=e.getBoundingClientRect();if(r.width<70||r.height<24||r.height>96)continue;if(r.right<window.innerWidth-60||r.bottom<window.innerHeight-220)continue;_fab=e;break;}
+  return _fab;
+}
+function place(){
+  var base=null,eb=document.querySelector('.wy-ebox');
+  if(eb){var r=eb.getBoundingClientRect();if(r.height>4)base=Math.round(window.innerHeight-r.top)+8;}
+  if(base===null){var fEl=fab();if(fEl){var fr=fEl.getBoundingClientRect(),st=getComputedStyle(fEl);if(fr.height>0&&st.display!=='none'&&st.visibility!=='hidden')base=Math.round(window.innerHeight-fr.top)+10;}}
+  if(base===null)base=78;
+  BOX.style.bottom=base+'px';
+}
+function upd(){place();BOX.classList.toggle('show',curIdx()===TARGET);}
+var tk=false;function onS(){if(!tk){tk=true;requestAnimationFrame(function(){tk=false;upd();});}}
+window.addEventListener('scroll',onS,{passive:true});window.addEventListener('resize',onS);
+BTN.addEventListener('click',function(){MODAL.classList.add('open');});
+MODAL.addEventListener('click',function(e){if(e.target===MODAL||e.target.id==='zl5Close')MODAL.classList.remove('open');});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')MODAL.classList.remove('open');});
+var c=0,iv=setInterval(function(){upd();if(++c>60)clearInterval(iv);},300);
+if(document.readyState!=='loading')upd();else document.addEventListener('DOMContentLoaded',upd);
+})();</script>
+<!--WY-ZL5:END-->
 </body></html>"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>八不既立，緣起性空之理已舉其綱。然而世人最難放下的，是親眼可見的「運動」——去、來、行走宛然在目，豈非實有？下一〈觀去來品〉即以此最直觀的現象為標的，示範如何以中觀正理解構「去」的自性。</p></div><a class="next-link" href="#chapter-2">前往 第二品 · 觀去來品第二 →</a></div></section>
 <section class="chapter" id="chapter-2"><div class="ch-head"><div class="ch-num">卷一　·　第二品</div><div class="ch-name">觀去來品第二</div><div class="ch-sub">金剛慧劍 · 解構時間、運動與去者的自性</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>承前品確立緣起性空之綱領，本品轉向最具說服力的「實有」直觀——運動。龍樹以「已去無有去，未去亦無去，離已去未去，去時亦無去」三時推檢，破除去法、去者、去時的自性，顯示連最鮮明的位移現象都了無實體。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="<!DOCTYPE html><html lang=zh-Hant><head><meta charset=UTF-8><meta name=viewport content='width=device-width,initial-scale=1'><link rel=stylesheet href='https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;display=swap'><style>
 :root{
