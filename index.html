@@ -2501,6 +2501,55 @@ var c=0,iv=setInterval(function(){upd();if(++c>60)clearInterval(iv);},300);
 if(document.readyState!=='loading')upd();else document.addEventListener('DOMContentLoaded',upd);
 })();</script>
 <!--WY-ZL9:END-->
+<!--WY-ZLTOC:BEGIN-->
+<style id="wy-zltoc-css">
+.zltoc-actions{position:absolute;right:11px;bottom:9px;z-index:3;display:flex;align-items:center;gap:7px;}
+.zltoc-actions .toc-yt{position:static;right:auto;bottom:auto;}
+.zltoc-tbl{display:inline-flex;align-items:center;gap:5px;font-family:"Noto Sans TC",sans-serif;font-size:12.1px;letter-spacing:1.5px;color:#8b5e3c;background:rgba(139,94,60,.12);border:1px solid rgba(139,94,60,.5);border-radius:11px;padding:3px 10px;cursor:pointer;line-height:1.4;transition:background .2s,color .2s,box-shadow .2s;}
+.zltoc-tbl:hover{background:#8b5e3c;color:#fbf3e2;box-shadow:0 2px 8px rgba(139,94,60,.3);}
+.zltoc-ic{font-size:11px;line-height:1;}
+@media(max-width:480px){.zltoc-tbl,.zltoc-actions .toc-yt{font-size:11px;padding:3px 8px;}}
+</style>
+<script id="wy-zltoc-js">(function(){
+function nOf(card){
+  var a=card.querySelector('.toc-card-link');
+  if(a){var m=(a.getAttribute('href')||'').match(/#chapter-(\d+)/);if(m)return m[1];}
+  var num=card.querySelector('.toc-num');if(num){var t=(num.textContent||'').replace(/\D/g,'');if(t)return t;}
+  return null;
+}
+function build(){
+  var cards=document.querySelectorAll('.toc-card');
+  for(var i=0;i<cards.length;i++){
+    var card=cards[i];
+    if(card.querySelector('.zltoc-actions'))continue;
+    var n=nOf(card);if(!n)continue;
+    var wrap=document.createElement('div');wrap.className='zltoc-actions';
+    var btn=document.createElement('button');btn.type='button';btn.className='zltoc-tbl';
+    btn.setAttribute('data-tbl',n);btn.setAttribute('aria-label','第'+n+'品 概念總表');btn.title='本品概念綜合總表';
+    btn.innerHTML='<span class="zltoc-ic">\u25a6</span>總表';
+    wrap.appendChild(btn);
+    var yt=card.querySelector('.toc-yt');if(yt){wrap.appendChild(yt);}
+    card.appendChild(wrap);
+  }
+}
+document.addEventListener('click',function(e){
+  var b=(e.target&&e.target.closest)?e.target.closest('.zltoc-tbl'):null;if(!b)return;
+  e.preventDefault();e.stopPropagation();
+  var n=b.getAttribute('data-tbl');
+  var m=document.getElementById('zl'+n+'Modal');
+  if(m){m.classList.add('open');}else{location.hash='#chapter-'+n;}
+});
+function deeplink(){
+  var q=(location.search.match(/[?&]tbl=(\d+)/)||[])[1]||(location.hash.match(/^#tbl-(\d+)$/)||[])[1];
+  if(!q)return;var md=document.getElementById('zl'+q+'Modal');if(md)md.classList.add('open');
+}
+function boot(){build();deeplink();}
+boot();
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);
+var c=0,iv=setInterval(function(){build();if(++c>20)clearInterval(iv);},250);
+setTimeout(deeplink,500);
+})();</script>
+<!--WY-ZLTOC:END-->
 </body></html>"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p>八不既立，緣起性空之理已舉其綱。然而世人最難放下的，是親眼可見的「運動」——去、來、行走宛然在目，豈非實有？下一〈觀去來品〉即以此最直觀的現象為標的，示範如何以中觀正理解構「去」的自性。</p></div><a class="next-link" href="#chapter-2">前往 第二品 · 觀去來品第二 →</a></div></section>
 <section class="chapter" id="chapter-2"><div class="ch-head"><div class="ch-num">卷一　·　第二品</div><div class="ch-name">觀去來品第二</div><div class="ch-sub">金剛慧劍 · 解構時間、運動與去者的自性</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p>承前品確立緣起性空之綱領，本品轉向最具說服力的「實有」直觀——運動。龍樹以「已去無有去，未去亦無去，離已去未去，去時亦無去」三時推檢，破除去法、去者、去時的自性，顯示連最鮮明的位移現象都了無實體。</p></div><iframe class="ch-frame" loading="lazy" srcdoc="<!DOCTYPE html><html lang=zh-Hant><head><meta charset=UTF-8><meta name=viewport content='width=device-width,initial-scale=1'><link rel=stylesheet href='https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;display=swap'><style>
 :root{
