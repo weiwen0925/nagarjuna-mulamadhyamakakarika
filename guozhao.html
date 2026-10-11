@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#161718">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <title>中論過招場</title>
-<meta name="description" content="《中論》觀因緣品、觀去來品的論敵過招複習：問題鏈排序、論敵出招你來破、同一把刀銜接兩品、頌文填空、配對快打。頌文與青目釋依中論讀本逐字照錄。">
+<meta name="description" content="《中論》緒論（從零到一讀八不）、觀因緣品、觀去來品的論敵過招複習：問題鏈排序、論敵出招你來破、箭頭四問與同一把刀、頌文填空、配對快打。頌文與青目釋依中論讀本逐字照錄。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700;900&display=swap">
@@ -135,6 +135,19 @@ main{position:relative;margin-top:22px}
   .fb,.end{animation:rise .3s ease-out}
   @keyframes rise{from{transform:translateY(6px)}to{transform:none}}
 }
+.stg.z{border-color:rgba(227,192,133,.45)}
+.stg.z b{color:var(--gold)}
+@media (min-width:521px){.stg.z{grid-column:span 1}}
+@media (min-width:760px){.stg.z{grid-column:span 2}}
+.arw{display:block;width:100%;max-width:420px;height:auto;margin:6px auto 2px}
+.arw .seg{stroke:rgba(207,214,218,.35);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.arw .seg.dash{stroke-dasharray:6 7}
+.arw .seg.on{stroke:var(--gold);stroke-width:4}
+.arw .end{fill:rgba(207,214,218,.06);stroke:rgba(207,214,218,.45);stroke-width:2}
+.arw .end.on{fill:var(--gold-soft);stroke:var(--gold);stroke-width:3}
+.arw .n{font-family:var(--f-body);font-size:22px;font-weight:700;fill:var(--snow)}
+.arw .t{font-family:var(--f-body);font-size:16px;fill:var(--silver-2)}
+.arw .t.on{fill:var(--gold);font-weight:700}
 </style>
 </head>
 <body>
@@ -143,18 +156,102 @@ main{position:relative;margin-top:22px}
   <header class="top">
     <div class="eyebrow">Mūlamadhyamakakārikā · Dialectic Arena</div>
     <div class="ttl"><h1>中論過招場</h1><span class="seal" aria-hidden="true">過<br>招</span></div>
-    <p class="sub">觀因緣品 → 觀去來品。論敵一路追問，你替龍樹出招；六關由易而難，最後把兩品串成同一把刀。</p>
-    <div class="backs"><a href="https://weiwen0925.github.io/dazhidulun-0/#zl-videos">← 回中論導讀影片</a><a href="https://weiwen0925.github.io/nagarjuna-mulamadhyamakakarika/#chapter-1">讀本・觀因緣品</a><a href="https://weiwen0925.github.io/nagarjuna-mulamadhyamakakarika/#chapter-2">讀本・觀去來品</a></div>
+    <p class="sub">緒論 → 觀因緣品 → 觀去來品。先用「從不會到會」這條箭頭讀八不，再進兩品；論敵一路追問，你替龍樹出招，最後把刀串起來。</p>
+    <div class="backs"><a href="https://weiwen0925.github.io/dazhidulun-0/#zl-videos">← 回中論導讀影片</a><a href="https://youtu.be/tIF5l1XUl0c" target="_blank" rel="noopener">影片・緒論</a><a href="https://weiwen0925.github.io/nagarjuna-mulamadhyamakakarika/#chapter-1">讀本・觀因緣品</a><a href="https://weiwen0925.github.io/nagarjuna-mulamadhyamakakarika/#chapter-2">讀本・觀去來品</a></div>
   </header>
   <nav class="stages" id="stages" aria-label="關卡"></nav>
   <main id="main" aria-live="polite"></main>
   <footer class="foot">
     <span>頌文與青目釋依「中論讀本」站頁逐字照錄（鳩摩羅什譯）。成績只存在這台裝置的瀏覽器。</span>
-    <i>Chapters I – II</i>
+    <i>Prologue · Chapters I – II</i>
   </footer>
  </div>
 </div>
 <script>
+/* ───────── 資料：緒論（從零到一讀八不）論敵九問與龍樹的招 ───────── */
+const Z=[
+ {id:'Z1',round:'開局',q:'我明明從不會到會，這不就是生嗎？',basis:'親身經歷：昨天不會，今天會了',keep:'實有的生',
+  name:'一條箭頭四問',tag:'0、1 各有自性——八不只對準這一個前提',
+  gist:'先把箭頭畫清楚：0＝還不會，1＝會了。八不是對這條箭頭的四種追問——兩端（生滅）、之後（常斷）、0 與 1 的關係（一異）、1 從哪裡來（來出）。龍樹每一刀只對準一個前提：0 是固定的 0，1 是固定的 1。',
+  src:[{lab:'觀因緣品・歸敬頌',v:['不生亦不滅，不常亦不斷；','不一亦不異，不來亦不出。']},{lab:'青目釋',q:'法雖無量，略說八事則為總破一切法。'}],
+  m:'K',b1:{lab:'學會一題',q:'0＝還不會，1＝會了；學會，就是從 0 到 1 這一條箭頭。'},b2:{lab:'青目釋・穀芽',q:'世間眼見劫初穀不生。何以故？離劫初穀，今穀不可得。'},
+  next:'生明明眼見，論敵改問生法：會總得從某處生出來，四種生法總有一種對吧？'},
+ {id:'Z2',round:'第一回合',q:'會總得從某處生出來，四種生法總有一種對吧？',basis:'可能性只有自生、他生、共生、無因生',keep:'一種實有的生法',
+  name:'四句窮舉',tag:'自、他、共、無因四門列盡；生還要再生，生生無窮',
+  gist:'1 從 1 生，已經會了何必再生，而且生還得再被生——生生無窮；從 0 生，固定的 0 裡沒有 1，兩回事若能生，0 也能生出 7；共生兼兩過；無因生，不靠練習也會，布施持戒的人反該墮地獄。四門都找不到生。',
+  src:[{lab:'觀因緣品・第一偈',v:['諸法不自生，亦不從他生；','不共不無因，是故知無生。']},{lab:'觀三相品・第二十偈',v:['若謂更有生，生生則無窮；','離生生有生，法皆能自生。']}],
+  m:'E',b1:{lab:'學會一題',q:'1 從 1 生，已經會了何必再生；從 0 生，0 也能生出 7。'},b2:{lab:'青目釋',q:'若從自體生，則一法有二體：一謂生、二謂生者。'},
+  next:'四門都封死，論敵退到因中有無：會要不是本來就在，就是本來沒有吧？'},
+ {id:'Z3',round:'第二回合',q:'會要不是本來就在，就是本來沒有，總有一邊吧？',basis:'因中先有果，或因中先無果',keep:'實有的因果關係',
+  name:'有無二難',tag:'先有何用緣，先無為誰緣；先後同時也排不出',
+  gist:'會若早在不會裡，就不叫生，練習也多餘——先有何用緣；不會裡一點會也沒有，這堆緣跟非緣有什麼兩樣——先無為誰緣。換成時間也一樣：0 先滅、1 才生，1 就無因；同時，能生與所生一時俱，談不上誰生誰。',
+  src:[{lab:'觀因緣品・第六偈',v:['果先於緣中，有無俱不可；','先無為誰緣？先有何用緣？']},{lab:'觀因果品・第七偈',v:['若眾緣合時，而有果生者；','生者及可生，則為一時俱。']}],
+  m:'E',b1:{lab:'學會一題',q:'會若早藏在不會裡，練習就多餘；不會裡若一點會也沒有，憑什麼只從這裡生出會？'},b2:{lab:'青目釋（觀因果品）',q:'若乳中無酪，則與水同，不應言但從乳出。'},
+  next:'因果的位置排不出來，論敵換到時間：總有一刻，是正在學會的那一刻吧？'},
+ {id:'Z4',round:'第三回合',q:'總有一刻，是正在學會的那一刻吧？',basis:'動處則有去：正在動的地方就有去',keep:'實有的變化時刻',
+  name:'三時查變',tag:'已會、未會、正在會，三格都找不到變',
+  gist:'已會的不再變會，還不會的此刻也沒在會；「正在學會」一半是已經、一半是還沒，拿掉兩端，找不到獨立的「正在」。滅是鏡像：法已滅不滅，未滅亦不滅，滅時亦不滅。',
+  src:[{lab:'觀去來品・第一偈',v:['已去無有去，未去亦無去；','離已去未去，去時亦無去。']},{lab:'觀三相品・第二十七偈',v:['法已滅不滅，未滅亦不滅；','滅時亦不滅，無生何有滅？']}],
+  m:'E',b1:{lab:'學會一題',q:'已會不再變會，還不會沒在會；拿掉「已經」和「還沒」，找不到獨立的「正在」。'},b2:{lab:'青目釋（觀去來品）',q:'去時名半去半未去，不離已去、未去故。'},
+  next:'三格都查不到變，論敵順著青目的追問：若不滅則應常——會了總是常住的吧？'},
+ {id:'Z5',round:'第四回合',q:'會了就是會了，總是常住不變的吧？',basis:'既然不滅，就應該是常',keep:'定住不變的會',
+  name:'定性二難',tag:'有定性，不是常就是斷',
+  gist:'1 若有定性，要嘛永遠是 1——永遠會、不會忘，也走不到 2；要嘛一變 0 就毫無關係——練過的不留痕跡。常與斷同出一門。實際是相續：依昨天的練習而有，故不斷；不是昨天原封不動，故不常。',
+  src:[{lab:'觀有無品・第十一偈',v:['若法有定性，非無則是常；','先有而今無，是則為斷滅。']},{lab:'觀有無品・第十偈',v:['定有則著常，定無則著斷；','是故有智者，不應著有無。']}],
+  m:'A',b1:{lab:'學會一題',q:'定住的會：永遠不忘，也走不到下一步；一忘就毫無關係：複習也沒用。'},b2:{lab:'青目釋',q:'法若實有則不應無，先有今無是即為斷，若先有性是則為常。'},
+  next:'常斷同出一門，論敵再推：既然不斷，不會跟會了總是同一件事或兩件事吧？'},
+ {id:'Z6',round:'第五回合',q:'不會跟會了，總是同一件事或兩件事吧？',basis:'既然不斷，前後就是同一個',keep:'實有的同一或差別',
+  name:'一異兩頭問',tag:'一則不須因緣，異則離乳無酪',
+  gist:'說是一：不會就是會，不必學，乳當下就是酪。說是異：兩件毫不相干，只是換人；而且離開還不會的你，找不到別人來會——離乳有何法，而能作於酪。燃與可燃，是同一把刀。',
+  src:[{lab:'觀行品・第七偈',v:['若是法即異，乳應即是酪；','離乳有何法，而能作於酪？']},{lab:'觀燃可燃品・第一偈',v:['若燃是可燃，作作者則一；','若燃異可燃，離可燃有燃。']}],
+  m:'R',b1:{lab:'學會一題',q:'不會就是會了，就不必學；兩件毫不相干，只是換了一個人。'},b2:{lab:'青目釋',q:'若一則無緣，若異則無相續。'},
+  next:'一異兩頭都不通，論敵退到最後一個主角：學會的那個我，總是實有的吧？'},
+ {id:'Z7',round:'第六回合',q:'學會的那個我，總是實有的吧？',basis:'沒有作者，作業就落入無因',keep:'實有的學習者',
+  name:'相待・五求',tag:'因學有學者；五處都找不到那個我',
+  gist:'因學有學者，因學者有學：學習者是對著學習才得名，兩邊互相成立。再用五求找那個我：就是 0 和 1 嗎？離開它們另有一個嗎？我在它們裡面、它們在我裡面，還是我擁有它們？五處都找不到。成長照樣發生，只是沒有實有的主角去扛它。',
+  src:[{lab:'觀作作者品・第十一偈',v:['因業有作者，因作者有業；','成業義如是，更無有餘事。']},{lab:'觀如來品・第一偈',v:['非陰不離陰，此彼不相在；','如來不有陰，何處有如來？']}],
+  m:'R',b1:{lab:'學會一題',q:'因為有學，才有學的人；那個「我」，在不會與會了的哪一處？'},b2:{lab:'青目釋（觀作作者品）',q:'是業從眾緣生，假名為有，無有決定。'},
+  next:'主角也找不到，論敵問來處：會總有個來處，不是外面來，就是裡面出吧？'},
+ {id:'Z8',round:'第七回合',q:'會總有個來處，不是外面來，就是裡面出吧？',basis:'東西總得從某處來，或從某處出',keep:'會的實在來處',
+  name:'不來不出',tag:'不從外來，不從內出，眾緣和合但得名字',
+  gist:'來：芽不是從別處飛進穀裡的，如鳥來栖樹，而實不爾。出：沒人見過芽從穀裡鑽出，如蛇從穴出，而實不爾。自性不在眾緣中，所以沒有現成的 1 從裡面出；他性亦無，所以也沒有現成的 1 從外面來。',
+  src:[{lab:'觀因緣品・第二偈',v:['如諸法自性，不在於緣中；','以無自性故，他性亦復無。']},{lab:'青目釋',q:'若來者，芽應從餘處來，如鳥來栖樹；而實不爾，是故不來。'}],
+  m:'S',b1:{lab:'學會一題',q:'會不是從老師那裡搬過來，也不是原本藏在身上。'},b2:{lab:'青目釋・穀芽',q:'若有出，應見芽從穀出，如蛇從穴出；而實不爾，是故不出。'},
+  next:'來處也沒有，論敵反手一擊：全都破了，豈不是什麼都學不會？'},
+ {id:'Z9',round:'收束',q:'全都破了，豈不是什麼都學不會？',basis:'一切皆空，就無生無滅、無四聖諦',keep:'學習與修行的意義',
+  name:'以有空義故',tag:'把過失還給論敵；空也不立成新的 0',
+  gist:'龍樹把過失還給論敵：正因為沒有固定的 0，才學得會；0 若有定性，就永遠是 0。但也不把空立成新的 0：若復見有空，諸佛所不化。八不拔掉的是箭頭兩端的釘子，不是箭頭。',
+  src:[{lab:'觀四諦品・第十四偈',v:['以有空義故，一切法得成；','若無空義者，一切則不成。']},{lab:'觀行品・第九偈',v:['大聖說空法，為離諸見故；','若復見有空，諸佛所不化。']}],
+  m:'K',b1:{lab:'學會一題',q:'正因為沒有固定的不會，才學得會。'},b2:{lab:'青目釋（觀行品）',q:'如嬰兒定住自性者，終不作匍匐乃至老年。'},
+  next:''}
+];
+/* 緒論的「同一把刀」：這一回合在追問 0→1 箭頭的哪一處 */
+const M0={
+ K:{name:'整條箭頭',d:'八不的總綱：拔掉的是兩端的釘子，不是箭頭'},
+ E:{name:'兩端・生滅',d:'0 真的變成 1 了嗎？1 會不會再變回 0'},
+ A:{name:'之後・常斷',d:'1 是永遠是 1，還是一斷就回到 0'},
+ R:{name:'關係・一異',d:'0 和 1（和那個「我」），是同一個還是兩個'},
+ S:{name:'來處・來出',d:'1 從外面進來，還是從 0 裡面冒出'}
+};
+/* ───────── 資料：頌文填空・緒論 ───────── */
+const F0=[
+ {lab:'觀因緣品・歸敬頌',v:['不生亦不滅，不常亦不斷；','不一亦不異，不來亦不出。'],ln:1,ans:'來',opts:['來','去','生','常'],note:'八不：對同一條箭頭的四種追問'},
+ {lab:'觀因緣品・第一偈',v:['諸法不自生，亦不從他生；','不共不無因，是故知無生。'],ln:1,ans:'無因',opts:['無因','無果','無緣','有因'],note:'四句窮舉'},
+ {lab:'觀三相品・第二十偈',v:['若謂更有生，生生則無窮；','離生生有生，法皆能自生。'],ln:0,ans:'無窮',opts:['無窮','不生','有生','無生'],note:'生生無窮'},
+ {lab:'觀因緣品・第六偈',v:['果先於緣中，有無俱不可；','先無為誰緣？先有何用緣？'],ln:1,ans:'為誰',opts:['為誰','何用','云何','何能'],note:'有無二難'},
+ {lab:'觀因果品・第七偈',v:['若眾緣合時，而有果生者；','生者及可生，則為一時俱。'],ln:1,ans:'一時',opts:['一時','先後','前後','二時'],note:'先後同時：同時就談不上誰生誰'},
+ {lab:'觀去來品・第一偈',v:['已去無有去，未去亦無去；','離已去未去，去時亦無去。'],ln:0,ans:'未去',opts:['未去','已去','去時','去者'],note:'三時查變'},
+ {lab:'觀三相品・第二十七偈',v:['法已滅不滅，未滅亦不滅；','滅時亦不滅，無生何有滅？'],ln:1,ans:'無生',opts:['無生','無滅','有生','不住'],note:'滅是生的鏡像：三時求滅不可得'},
+ {lab:'觀有無品・第十一偈',v:['若法有定性，非無則是常；','先有而今無，是則為斷滅。'],ln:0,ans:'定性',opts:['定性','自性','無性','他性'],note:'定性二難：不是常就是斷'},
+ {lab:'觀有無品・第十偈',v:['定有則著常，定無則著斷；','是故有智者，不應著有無。'],ln:1,ans:'有無',opts:['有無','斷常','一異','去來'],note:'定性二難的結論'},
+ {lab:'觀行品・第七偈',v:['若是法即異，乳應即是酪；','離乳有何法，而能作於酪？'],ln:0,ans:'酪',opts:['酪','乳','異','果'],note:'一異：一則不須因緣，異則離乳無酪'},
+ {lab:'觀燃可燃品・第一偈',v:['若燃是可燃，作作者則一；','若燃異可燃，離可燃有燃。'],ln:0,ans:'作者',opts:['作者','燃者','可燃','受者'],note:'燃與可燃：同一把一異刀'},
+ {lab:'觀作作者品・第十一偈',v:['因業有作者，因作者有業；','成業義如是，更無有餘事。'],ln:0,ans:'因業',opts:['因業','因緣','離業','有業'],note:'相待：因學有學者'},
+ {lab:'觀如來品・第一偈',v:['非陰不離陰，此彼不相在；','如來不有陰，何處有如來？'],ln:1,ans:'何處',opts:['何處','云何','何時','何者'],note:'五求不可得'},
+ {lab:'觀因緣品・第二偈',v:['如諸法自性，不在於緣中；','以無自性故，他性亦復無。'],ln:1,ans:'他性',opts:['他性','自性','緣性','有性'],note:'不來不出：自性不在緣中，他性亦無'},
+ {lab:'觀四諦品・第十四偈',v:['以有空義故，一切法得成；','若無空義者，一切則不成。'],ln:0,ans:'空義',opts:['空義','有義','自性','因緣'],note:'把過失還給論敵'},
+ {lab:'觀行品・第九偈',v:['大聖說空法，為離諸見故；','若復見有空，諸佛所不化。'],ln:1,ans:'有空',opts:['有空','無空','有法','空法'],note:'空也不立成新的 0'}
+];
 /* ───────── 資料：品一（觀因緣品）九問與龍樹的招 ───────── */
 const A=[
  {id:'A1',round:'開局',q:'法無量無邊，只破八件事，破得盡嗎？',basis:'各家說萬物從自在天、時、微塵生，或因中有果、無果',keep:'萬物總有一個實在的來源',
@@ -300,6 +397,9 @@ function verseHTML(s){
   return `<div class="verse"><div class="lab">${esc(s.lab)}</div><p class="quote">「${esc(s.q)}」</p></div>`;
 }
 const STAGES=[
+ {k:'o0',t:'問題鏈・緒論',d:'排出論敵九問',z:1},
+ {k:'d0',t:'過招・緒論',d:'從零到一，你來破',z:1},
+ {k:'f0',t:'頌文填空・緒論',d:'十六首頌',z:1},
  {k:'o1',t:'問題鏈・品一',d:'排出論敵九問'},
  {k:'d1',t:'過招・品一',d:'論敵出招，你來破'},
  {k:'o2',t:'問題鏈・品二',d:'排出原典八問'},
@@ -313,7 +413,7 @@ function renderNav(){
   $('#stages').innerHTML=STAGES.map((s,i)=>{
     const b=S.best[s.k];
     const mark=b==null?'':(s.k==='m'?`最佳 ${b} 秒`:`最佳 ${b}`);
-    return `<button class="stg" data-i="${i}" aria-current="${i===S.stage}"><b>第${cn(i+1)}關</b><span>${s.t}</span><em>${mark||s.d}</em></button>`;
+    return `<button class="stg${s.z?' z':''}" data-i="${i}" aria-current="${i===S.stage}"><b>第${cn(i+1)}關</b><span>${s.t}</span><em>${mark||s.d}</em></button>`;
   }).join('');
   document.querySelectorAll('.stg').forEach(b=>b.onclick=()=>go(+b.dataset.i));
 }
@@ -324,11 +424,14 @@ function saveBest(k,v,lowerBetter){
 }
 function render(){
   const k=STAGES[S.stage].k;
+  if(k==='o0') orderStage('o0',Z,'緒論・論敵九問','依緒論影片「論敵的問題鏈」：從「從不會到會」這條箭頭開始，論敵每被破一次，就退一步改問下一題。依先後點選排序。');
+  if(k==='d0') duelStage('d0',Z);
+  if(k==='f0') fillStage('f0',F0,'頌文填空・緒論');
   if(k==='o1') orderStage('o1',A,'論敵九問','依影片「論敵的問題鏈」：論敵每被破一次，就退一步改問下一題。依先後點選排序。');
   if(k==='o2') orderStage('o2',B.filter(x=>x.orig),'觀去來品・論敵八問','以下八句是觀去來品原典裡論敵（問曰）的原話。依論辯先後點選排序。');
-  if(k==='d1') duelStage('d1',A,false);
-  if(k==='d2') duelStage('d2',B,true);
-  if(k==='f') fillStage();
+  if(k==='d1') duelStage('d1',A);
+  if(k==='d2') duelStage('d2',B);
+  if(k==='f') fillStage('f',F,'頌文填空');
   if(k==='m') matchStage();
 }
 
@@ -369,11 +472,36 @@ function orderStage(key,list,title,hint){
   renderNav();
 }
 
-/* ───────── 第二、四關：論敵出招・你來破 ───────── */
-function duelStage(key,list,withBridge){
+/* ───────── 第二、五、七關：論敵出招・你來破（緒論與品二另有「同一把刀」銜接題） ───────── */
+const DUEL={
+ d0:{title:'過招・緒論',endTitle:'緒論過招結束',M:M0,used:'緒論用在',
+     knife:'從零到一：這一回合在追問箭頭的哪一處？',
+     endHint:'九問走完。八不不是把箭頭擦掉，是把兩端的釘子拔掉。下面是「箭頭四問」的總表；下一關，填緒論裡的頌文。'},
+ d1:{title:'過招・觀因緣品',endTitle:'觀因緣品過招結束',M:null,
+     endHint:'九問一路退守，最後連「緣、非緣」都放下。下一關換觀去來品的論敵原話。'},
+ d2:{title:'過招・觀去來品',endTitle:'觀去來品過招結束',M:M,used:'品二用在',
+     knife:'同一把刀：這一招在品一用過嗎？它用的是哪一種手法？',
+     endHint:'品二的每一刀，品一都用過。下面是五種手法的總表：品一先在「生」上練刀，品二換成「去」來試。'}
+};
+/* 0→1 箭頭小圖：亮起這一回合追問的那一處 */
+function arrowSVG(part){
+  const on=p=>part===p||part==='K';
+  return `<svg class="arw" viewBox="0 0 360 96" role="img" aria-label="從 0 到 1 的箭頭：${esc(M0[part].name)}">
+   <path class="seg${on('S')?' on':''}" d="M232 8 L240 30" /><text class="t${on('S')?' on':''}" x="226" y="12" text-anchor="end">外來？</text>
+   <line class="seg${on('R')?' on':''}" x1="78" y1="56" x2="226" y2="56"/><path class="seg${on('R')?' on':''}" d="M216 48 L228 56 L216 64"/>
+   <text class="t${on('R')?' on':''}" x="152" y="44" text-anchor="middle">一？異？</text>
+   <circle class="end${on('E')?' on':''}" cx="54" cy="56" r="22"/><text class="n" x="54" y="64" text-anchor="middle">0</text>
+   <circle class="end${on('E')?' on':''}" cx="252" cy="56" r="22"/><text class="n" x="252" y="64" text-anchor="middle">1</text>
+   <line class="seg dash${on('A')?' on':''}" x1="278" y1="56" x2="350" y2="56"/><text class="t${on('A')?' on':''}" x="314" y="44" text-anchor="middle">常？斷？</text>
+   <text class="t${on('S')?' on':''}" x="152" y="88" text-anchor="middle">${part==='S'?'內出？（本來藏在 0 裡）':''}</text>
+   <text class="t${on('E')?' on':''}" x="54" y="92" text-anchor="middle">生？滅？</text>
+  </svg>`;
+}
+function duelStage(key,list){
+  const cfg=DUEL[key], MM=cfg.M, withBridge=!!MM;
   if(!S.sub) S.sub={i:0,phase:'ask',score:0,bscore:0,opts:null,pick:null,mpick:null};
   const st=S.sub;
-  if(st.i>=list.length){ return duelEnd(key,list,withBridge); }
+  if(st.i>=list.length){ return duelEnd(key,list); }
   const x=list[st.i];
   if(!st.opts) st.opts=shuffle([x.id,...shuffle(list.filter(y=>y.id!==x.id).map(y=>y.id)).slice(0,3)]);
   const byId=Object.fromEntries(list.map(y=>[y.id,y]));
@@ -381,7 +509,7 @@ function duelStage(key,list,withBridge){
   const who=x.orig===false?'龍樹':'論敵';
   const qlab=x.orig===false?'收網':`第${cn(st.i+1)}問`;
   const meta=x.basis?`<p class="qmeta">根據：<b>${esc(x.basis)}</b>｜想保住：<b>${esc(x.keep)}</b></p>`:(x.orig?`<p class="qmeta">原典・問曰｜想保住：<b>${esc(x.keep)}</b></p>`:`<p class="qmeta">${who}自結｜選出龍樹收網的那一招</p>`);
-  let html=`<section class="panel"><div class="ptitle"><h2>${withBridge?'過招・觀去來品':'過招・觀因緣品'}</h2><p>第 ${st.i+1} / ${list.length} 回合</p></div>
+  let html=`<section class="panel"><div class="ptitle"><h2>${cfg.title}</h2><p>第 ${st.i+1} / ${list.length} 回合</p></div>
    ${prev?`<p class="retreat">${esc(prev)}</p>`:''}
    <div class="qrow"><div class="pill"><i>${qlab}</i><small>${esc(x.round)}</small></div><div class="qt"><p class="qbig">${x.orig?'「'+esc(x.q)+'」':esc(x.q)}</p>${meta}</div></div>
    <p class="hint">${x.orig===false?'哪一招是收網？':'龍樹用哪一招破它？'}</p>
@@ -395,20 +523,20 @@ function duelStage(key,list,withBridge){
       <p><b>破在哪裡：</b>${esc(x.gist)}</p>${x.src.map(verseHTML).join('')}</div>`;
     if(withBridge){
       html+=`<div class="fb ${st.phase==='bridged'?(st.mpick===x.m?'ok':'no'):''}">
-        <p class="knife">同一把刀：這一招在品一用過嗎？它用的是哪一種手法？</p>
-        <div class="chips">${Object.entries(M).map(([k,m])=>{let c='';if(st.phase==='bridged'){if(k===x.m)c='right';else if(k===st.mpick)c='wrong';}
+        <p class="knife">${esc(cfg.knife)}</p>
+        <div class="chips">${Object.entries(MM).map(([k,m])=>{let c='';if(st.phase==='bridged'){if(k===x.m)c='right';else if(k===st.mpick)c='wrong';}
           return `<button class="chip ${c}" data-m="${k}" ${st.phase==='bridged'?'disabled':''} title="${esc(m.d)}">${esc(m.name)}</button>`;}).join('')}</div>`;
       if(st.phase==='bridged'){
-        html+=`<p><b>${esc(M[x.m].name)}：</b>${esc(M[x.m].d)}。${st.mpick===x.m?'':'（你選的是「'+esc(M[st.mpick].name)+'」）'}</p>
+        html+=`${key==='d0'?arrowSVG(x.m):''}<p><b>${esc(MM[x.m].name)}：</b>${esc(MM[x.m].d)}。${st.mpick===x.m?'':'（你選的是「'+esc(MM[st.mpick].name)+'」）'}</p>
         <div class="bridge"><div class="bcol"><div class="lab">${esc(x.b1.lab)}</div><p class="quote">「${esc(x.b1.q)}」</p></div>
         <div class="bcol"><div class="lab">${esc(x.b2.lab)}</div><p class="quote">「${esc(x.b2.q)}」</p></div></div>`;
       }
       html+=`</div>`;
     }
     const canNext=!withBridge||st.phase==='bridged';
-    html+=`<div class="bar"><span class="score">破對 ${st.score}${withBridge?`｜同一把刀 ${st.bscore}`:''}</span><button class="btn" id="nx" ${canNext?'':'disabled'}>${st.i===list.length-1?'看結果':'下一回合'}</button></div>`;
+    html+=`<div class="bar"><span class="score">破對 ${st.score}${withBridge?`｜${key==='d0'?'箭頭':'同一把刀'} ${st.bscore}`:''}</span><button class="btn" id="nx" ${canNext?'':'disabled'}>${st.i===list.length-1?'看結果':'下一回合'}</button></div>`;
   } else {
-    html+=`<div class="bar"><span class="score">破對 ${st.score}${withBridge?`｜同一把刀 ${st.bscore}`:''}</span></div>`;
+    html+=`<div class="bar"><span class="score">破對 ${st.score}${withBridge?`｜${key==='d0'?'箭頭':'同一把刀'} ${st.bscore}`:''}</span></div>`;
   }
   html+=`</section>`;
   $('#main').innerHTML=html;
@@ -416,15 +544,15 @@ function duelStage(key,list,withBridge){
   document.querySelectorAll('.chip[data-m]').forEach(b=>b.onclick=()=>{st.mpick=b.dataset.m;if(st.mpick===x.m)st.bscore++;st.phase='bridged';render();});
   const nx=$('#nx'); if(nx) nx.onclick=()=>{st.i++;st.phase='ask';st.opts=null;st.pick=null;st.mpick=null;render();window.scrollTo({top:0,behavior:'smooth'});};
 }
-function duelEnd(key,list,withBridge){
-  const st=S.sub,n=list.length;
+function duelEnd(key,list){
+  const cfg=DUEL[key], MM=cfg.M, withBridge=!!MM, st=S.sub, n=list.length;
   saveBest(key,`${st.score}/${n}`);
-  const methods=withBridge?`<div class="olist">${Object.entries(M).map(([k,m])=>{
+  const methods=withBridge?`<div class="olist">${Object.entries(MM).map(([k,m])=>{
       const ex=list.filter(x=>x.m===k).map(x=>x.name).join('、');
-      return `<div class="ocard"><span class="t">${esc(m.name)}<br><span class="score">${esc(m.d)}。品二用在：${esc(ex)}</span></span></div>`;}).join('')}</div>`:'';
-  $('#main').innerHTML=`<section class="panel"><div class="ptitle"><h2>${withBridge?'觀去來品過招結束':'觀因緣品過招結束'}</h2></div>
-   <div class="end"><p class="big">破對 ${st.score} / ${n}${withBridge?`　同一把刀 ${st.bscore} / ${n}`:''}</p>
-   <p class="hint">${withBridge?'品二的每一刀，品一都用過。下面是五種手法的總表：品一先在「生」上練刀，品二換成「去」來試。':'九問一路退守，最後連「緣、非緣」都放下。下一關換觀去來品的論敵原話。'}</p></div>
+      return `<div class="ocard"><span class="t">${esc(m.name)}<br><span class="score">${esc(m.d)}。${esc(cfg.used)}：${esc(ex)}</span></span></div>`;}).join('')}</div>`:'';
+  $('#main').innerHTML=`<section class="panel"><div class="ptitle"><h2>${cfg.endTitle}</h2></div>
+   <div class="end"><p class="big">破對 ${st.score} / ${n}${withBridge?`　${key==='d0'?'箭頭':'同一把刀'} ${st.bscore} / ${n}`:''}</p>
+   <p class="hint">${cfg.endHint}</p></div>
    ${methods}
    <div class="bar"><button class="btn ghost" id="again">再打一輪</button><button class="btn" id="nextStage">下一關</button></div></section>`;
   $('#again').onclick=()=>{S.sub=null;render();};
@@ -432,17 +560,17 @@ function duelEnd(key,list,withBridge){
   renderNav();
 }
 
-/* ───────── 第五關：頌文填空 ───────── */
-function fillStage(){
-  if(!S.sub) S.sub={list:shuffle(F.map((_,i)=>i)).slice(0,10),i:0,score:0,pick:null,opts:null};
+/* ───────── 第三、八關：頌文填空 ───────── */
+function fillStage(key,FL,title){
+  if(!S.sub) S.sub={list:shuffle(FL.map((_,i)=>i)).slice(0,10),i:0,score:0,pick:null,opts:null};
   const st=S.sub;
   if(st.i>=st.list.length){
-    saveBest('f',`${st.score}/${st.list.length}`);
-    $('#main').innerHTML=`<section class="panel"><div class="ptitle"><h2>頌文填空結束</h2></div><div class="end"><p class="big">${st.score} / ${st.list.length}</p><p class="hint">每輪從十七首頌文中隨機抽十首，多玩幾輪就能全部遇到。</p></div>
+    saveBest(key,`${st.score}/${st.list.length}`);
+    $('#main').innerHTML=`<section class="panel"><div class="ptitle"><h2>${title}結束</h2></div><div class="end"><p class="big">${st.score} / ${st.list.length}</p><p class="hint">每輪從${cn(FL.length)}首頌文中隨機抽十首，多玩幾輪就能全部遇到。</p></div>
       <div class="bar"><button class="btn ghost" id="again">再來一輪</button><button class="btn" id="nextStage">下一關</button></div></section>`;
     $('#again').onclick=()=>{S.sub=null;render();};$('#nextStage').onclick=()=>go(S.stage+1);renderNav();return;
   }
-  const f=F[st.list[st.i]];
+  const f=FL[st.list[st.i]];
   if(!st.opts) st.opts=shuffle(f.opts);
   const lines=f.v.map((l,j)=>{
     if(j!==f.ln) return `<p class="ln">${esc(l)}</p>`;
@@ -450,7 +578,7 @@ function fillStage(){
     const fill=st.pick?`<span class="blank filled">${esc(f.ans)}</span>`:`<span class="blank">　</span>`;
     return `<p class="ln">${esc(l.slice(0,p))}${fill}${esc(l.slice(p+f.ans.length))}</p>`;
   }).join('');
-  let html=`<section class="panel"><div class="ptitle"><h2>頌文填空</h2><p>第 ${st.i+1} / ${st.list.length} 首</p></div>
+  let html=`<section class="panel"><div class="ptitle"><h2>${title}</h2><p>第 ${st.i+1} / ${st.list.length} 首</p></div>
     <p class="hint">選出空格裡的字。原典一字不改，填的是鳩摩羅什譯本的原文。</p>
     <div class="verse"><div class="lab">${esc(f.lab)}</div>${lines}</div>
     <div class="chips">${st.opts.map(o=>{let c='';if(st.pick){if(o===f.ans)c='right';else if(o===st.pick)c='wrong';}
@@ -466,18 +594,18 @@ function fillStage(){
   const nx=$('#nx'); if(nx) nx.onclick=()=>{st.i++;st.pick=null;st.opts=null;render();};
 }
 
-/* ───────── 第六關：配對快打 ───────── */
+/* ───────── 第九關：配對快打 ───────── */
 let timer=null;
 function matchStage(){
   if(!S.sub){
-    const pool=shuffle([...A,...B.filter(x=>x.orig)]).slice(0,6);
+    const pool=shuffle([...Z,...A,...B.filter(x=>x.orig)]).slice(0,6);
     S.sub={pairs:pool,left:shuffle(pool.map(x=>x.id)),right:shuffle(pool.map(x=>x.id)),done:[],pickL:null,miss:0,t0:null,t:0,bad:null};
   }
   const st=S.sub, byId=Object.fromEntries(st.pairs.map(x=>[x.id,x]));
   const finished=st.done.length===st.pairs.length;
   if(finished&&timer){clearInterval(timer);timer=null;saveBest('m',+st.t.toFixed(1),true);}
-  const src=x=>x.id[0]==='A'?'品一':'品二';
-  let html=`<section class="panel"><div class="ptitle"><h2>配對快打</h2><p>品一、品二混合，每輪六組</p></div>
+  const src=x=>({Z:'緒論',A:'品一',B:'品二'})[x.id[0]];
+  let html=`<section class="panel"><div class="ptitle"><h2>配對快打</h2><p>緒論、品一、品二混合，每輪六組</p></div>
    <p class="hint">先點左邊「論敵想保住的」，再點右邊龍樹破它的那一招。配錯會記一次失手。</p>
    <div class="bar"><span class="score" id="clock">用時 ${st.t.toFixed(1)} 秒｜失手 ${st.miss}｜已配 ${st.done.length} / 6</span>${S.best.m!=null?`<span class="score">最佳 ${S.best.m} 秒</span>`:''}</div>
    <div class="mgrid"><div class="mcol"><h4>論敵想保住</h4>${st.left.map(id=>{const x=byId[id];
@@ -511,7 +639,7 @@ function start(d){
   if(d&&typeof d.stage==='number'){S.stage=d.stage;S.sub=d.sub||null;}
   renderNav();render();
 }
-window.claude?.hot?.snapshot?.(()=>({stage:S.stage,sub:S.stage===5?null:S.sub}));
+window.claude?.hot?.snapshot?.(()=>({stage:S.stage,sub:STAGES[S.stage].k==='m'?null:S.sub}));
 window.claude?.hot?.ready ? window.claude.hot.ready(start) : start(window.claude?.hot?.data ?? {});
 </script>
 
